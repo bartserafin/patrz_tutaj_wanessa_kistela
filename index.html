@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanessa Kistela Fotografia</title>
+  <!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  STRUKTURA FOLDERÓW W REPOZYTORIUM                  ║
+  ║                                                      ║
+  ║  /logo/          →  logo.png (lub .svg)              ║
+  ║  /carousel/      →  01.jpg, 02.jpg, 03.jpg, ...      ║
+  ║  /photo_of_me/   →  me.jpg                           ║
+  ║  /portfolio/     →  01.jpg, 02.jpg, 03.jpg, ...      ║
+  ║                                                      ║
+  ║  Wszystkie teksty edytujesz w obiekcie CONTENT       ║
+  ║  poniżej — bez dotykania reszty kodu.                ║
+  ╚══════════════════════════════════════════════════════╝
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #FAF7F2;
+      --bg2:         #F3EDE5;
+      --yellow:      #FFD882;
+      --orange:      #F04E23;
+      --pink:        #F07DC6;
+      --purple-lt:   #D4A0F0;
+      --purple:      #A855C8;
+      --purple-dark: #4A1E6B;
+      --text:        #2D1840;
+      --muted:       #8B6FA0;
+      --white:       #FFFFFF;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1.1rem 4rem;
+      background:rgba(250,247,242,0.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(168,85,200,0.12);
+      transition:box-shadow .3s;
+    }
+    nav .logo img { height:50px; display:block; }
+    nav ul { list-style:none; display:flex; gap:2.5rem; }
+    nav ul a {
+      text-decoration:none; color:var(--purple-dark);
+      font-size:.85rem; font-weight:500;
+      letter-spacing:.06em; text-transform:uppercase;
+      transition:color .2s;
+    }
+    nav ul a:hover { color:var(--orange); }
+    .nav-cta {
+      background:var(--orange); color:#fff; text-decoration:none;
+      padding:.6rem 1.6rem; border-radius:50px;
+      font-family:'Poppins',sans-serif; font-size:.82rem; font-weight:600;
+      transition:background .2s, transform .15s;
+    }
+    .nav-cta:hover { background:#d43d15; transform:scale(1.04); }
+
+    /* ── HERO CAROUSEL ── */
+    .hero { position:relative; height:100vh; min-height:580px; overflow:hidden; }
+    .carousel-track { display:flex; height:100%; transition:transform .75s cubic-bezier(.77,0,.175,1); }
+    .carousel-slide { min-width:100%; height:100%; position:relative; overflow:hidden; }
+    .carousel-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+    .slide-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(160deg, rgba(74,30,107,.05) 0%, rgba(45,24,64,.45) 100%);
+    }
+
+    .hero-content {
+      position:absolute; bottom:10%; left:4rem; z-index:10; max-width:600px;
+    }
+    .hero-content h1 {
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(2.4rem,5vw,4rem); font-weight:800;
+      color:#fff; line-height:1.1; margin-bottom:1rem;
+    }
+    .hero-content p {
+      color:rgba(255,255,255,.82); font-size:1.05rem;
+      font-weight:300; line-height:1.7; margin-bottom:2rem;
+    }
+    .hero-cta {
+      display:inline-block; background:var(--orange); color:#fff;
+      text-decoration:none; padding:.9rem 2.2rem; border-radius:50px;
+      font-family:'Poppins',sans-serif; font-weight:600; font-size:.95rem;
+      transition:background .2s, transform .15s;
+    }
+    .hero-cta:hover { background:#d43d15; transform:translateY(-2px); }
+
+    .carousel-arrows {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:100%; padding:0 1.5rem; display:flex;
+      justify-content:space-between; z-index:10; pointer-events:none;
+    }
+    .arrow {
+      pointer-events:all; width:44px; height:44px; border-radius:50%;
+      background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+      backdrop-filter:blur(4px); color:#fff; font-size:1.1rem;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    .arrow:hover { background:rgba(255,255,255,.3); }
+    .carousel-dots {
+      position:absolute; bottom:2rem; right:4rem;
+      display:flex; gap:.55rem; z-index:10;
+    }
+    .dot {
+      width:8px; height:8px; border-radius:50%;
+      background:rgba(255,255,255,.4); cursor:pointer;
+      transition:background .3s, transform .3s;
+    }
+    .dot.active { background:#fff; transform:scale(1.45); }
+
+    /* ── ABOUT ── */
+    .about { display:grid; grid-template-columns:1fr 1fr; min-height:88vh; }
+    .about-img { position:relative; overflow:hidden; }
+    .about-img img { width:100%; height:100%; object-fit:cover; }
+    .about-img::after {
+      content:''; position:absolute; bottom:0; right:0;
+      width:130px; height:130px;
+      background:var(--yellow); border-radius:50% 0 0 0;
+    }
+    .about-text {
+      padding:6rem 5rem; background:var(--bg2);
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .section-tag {
+      font-size:.72rem; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase;
+      color:var(--orange); margin-bottom:.9rem;
+    }
+    .about-text h2 {
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1.8rem,2.8vw,2.6rem); font-weight:800;
+      color:var(--purple-dark); line-height:1.2; margin-bottom:1.5rem;
+    }
+    .about-text p {
+      color:var(--muted); line-height:1.85;
+      font-size:.98rem; margin-bottom:1rem;
+    }
+    .about-signature {
+      font-family:'Poppins',sans-serif; font-size:1.4rem;
+      font-weight:700; color:var(--purple); margin-top:1.5rem;
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { padding:6rem 4rem; background:var(--bg); }
+    .section-header { text-align:center; margin-bottom:3.5rem; }
+    .section-header h2 {
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1.8rem,2.8vw,2.6rem); font-weight:800;
+      color:var(--purple-dark); margin-bottom:.6rem;
+    }
+    .section-header p { color:var(--muted); font-size:.97rem; max-width:480px; margin:0 auto; }
+
+    .portfolio-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+    .p-item {
+      position:relative; overflow:hidden;
+      border-radius:14px; cursor:pointer;
+    }
+    .p-item:nth-child(1) { aspect-ratio:3/4; }
+    .p-item:nth-child(2) { aspect-ratio:3/4; margin-top:2.5rem; }
+    .p-item:nth-child(3) { aspect-ratio:3/4; }
+    .p-item:nth-child(4) { aspect-ratio:3/4; }
+    .p-item:nth-child(5) { aspect-ratio:3/4; margin-top:-2.5rem; }
+    .p-item:nth-child(6) { aspect-ratio:3/4; }
+    .p-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; display:block; }
+    .p-item:hover img { transform:scale(1.06); }
+    .p-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(74,30,107,.55) 0%,transparent 55%);
+      opacity:0; transition:opacity .3s;
+    }
+    .p-item:hover .p-overlay { opacity:1; }
+
+    /* ── OFFER ── */
+    .offer { padding:6rem 4rem; background:var(--bg2); }
+    .offer-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3.5rem; }
+    .offer-card {
+      background:var(--bg); border-radius:18px; padding:2.5rem 2rem;
+      border:1px solid rgba(168,85,200,.15);
+      position:relative; overflow:hidden;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .offer-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(74,30,107,.1); }
+    .offer-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    }
+    .offer-card:nth-child(1)::before { background:var(--yellow); }
+    .offer-card:nth-child(2)::before { background:var(--orange); }
+    .offer-card:nth-child(3)::before { background:var(--purple); }
+    .offer-icon { font-size:2rem; margin-bottom:1rem; }
+    .offer-card h3 {
+      font-family:'Poppins',sans-serif; font-size:1.15rem;
+      font-weight:700; color:var(--purple-dark); margin-bottom:.7rem;
+    }
+    .offer-card p { color:var(--muted); line-height:1.75; font-size:.92rem; }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding:6rem 4rem; background:var(--purple-dark);
+      display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+    }
+    .contact .section-tag { color:var(--yellow); }
+    .contact-text h2 {
+      font-family:'Poppins',sans-serif;
+      font-size:clamp(1.8rem,2.8vw,2.6rem); font-weight:800;
+      color:#fff; line-height:1.2; margin-bottom:1.2rem;
+    }
+    .contact-text p { color:rgba(255,255,255,.6); line-height:1.8; font-size:.97rem; }
+    .contact-details { display:flex; flex-direction:column; gap:1.6rem; }
+    .c-item { display:flex; align-items:center; gap:1.2rem; }
+    .c-icon {
+      width:50px; height:50px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; flex-shrink:0;
+    }
+    .c-icon.email { background:var(--orange); }
+    .c-icon.phone { background:var(--purple); }
+    .c-icon.insta { background:var(--pink); }
+    .c-label {
+      font-size:.7rem; text-transform:uppercase; letter-spacing:.12em;
+      color:rgba(255,255,255,.4); margin-bottom:.25rem;
+    }
+    .c-value { color:#fff; font-size:.98rem; font-weight:500; text-decoration:none; }
+    .c-value:hover { color:var(--yellow); }
+
+    /* ── FOOTER ── */
+    footer {
+      background:#1d0e30; text-align:center;
+      padding:1.8rem; color:rgba(255,255,255,.28);
+      font-size:.78rem; letter-spacing:.04em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      nav { padding:1rem 1.5rem; }
+      nav ul { display:none; }
+      .hero-content { left:1.5rem; max-width:90%; }
+      .carousel-dots { right:1.5rem; }
+      .about { grid-template-columns:1fr; }
+      .about-img { height:65vw; }
+      .about-text { padding:3rem 1.5rem; }
+      .portfolio { padding:4rem 1.5rem; }
+      .portfolio-grid { grid-template-columns:repeat(2,1fr); }
+      .p-item:nth-child(2),.p-item:nth-child(5) { margin:0; }
+      .offer { padding:4rem 1.5rem; }
+      .offer-cards { grid-template-columns:1fr; }
+      .contact { grid-template-columns:1fr; padding:4rem 1.5rem; gap:2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     ✏️  EDYTUJ TUTAJ — wszystkie teksty strony
+     ════════════════════════════════════════════════════════════ -->
+<script>
+const CONTENT = {
+  hero: {
+    slides: [
+      { img: "carousel/01.jpg", alt: "Sesja portretowa" },
+      { img: "carousel/02.jpg", alt: "Sesja plenerowa" },
+      { img: "carousel/03.jpg", alt: "Sesja studyjna" }
+    ],
+    heading:    "[Twoje hasło przewodnie]",
+    subheading: "[Krótki opis — czym się zajmujesz i co wyróżnia Twoje sesje. Jedno lub dwa zdania.]",
+    ctaLabel:   "Zarezerwuj sesję"
+  },
+  about: {
+    tag:      "O mnie",
+    heading:  "[Nagłówek sekcji 'O mnie']",
+    paragraphs: [
+      "[Pierwszy akapit — kim jesteś, skąd pochodzi Twoja pasja do fotografii, jaki styl reprezentujesz.]",
+      "[Drugi akapit — co sprawia, że sesje z Tobą są wyjątkowe? Jak dbasz o komfort klientek/klientów?]"
+    ],
+    name: "Wanessa Kistela"
+  },
+  portfolio: {
+    tag:      "Portfolio",
+    heading:  "[Nagłówek galerii]",
+    sub:      "[Krótki podtytuł zachęcający do przejrzenia prac]",
+    photos: [
+      { img: "portfolio/01.jpg", alt: "Sesja 1" },
+      { img: "portfolio/02.jpg", alt: "Sesja 2" },
+      { img: "portfolio/03.jpg", alt: "Sesja 3" },
+      { img: "portfolio/04.jpg", alt: "Sesja 4" },
+      { img: "portfolio/05.jpg", alt: "Sesja 5" },
+      { img: "portfolio/06.jpg", alt: "Sesja 6" }
+    ]
+  },
+  offer: {
+    tag:     "Oferta",
+    heading: "[Nagłówek sekcji oferty]",
+    sub:     "[Jedno zdanie opisujące dostępne pakiety lub rodzaje sesji]",
+    cards: [
+      { icon: "🌸", title: "[Rodzaj sesji 1]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" },
+      { icon: "✨", title: "[Rodzaj sesji 2]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" },
+      { icon: "🌿", title: "[Rodzaj sesji 3]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" }
+    ]
+  },
+  contact: {
+    tag:     "Kontakt",
+    heading: "[Nagłówek sekcji kontaktowej]",
+    sub:     "[Zachęcające zdanie — zaproszenie do kontaktu, np. 'Napisz do mnie i razem stworzymy coś pięknego.']",
+    email:   { label: "E-mail",     value: "wanessa@example.com" },
+    phone:   { label: "Telefon",    value: "+48 000 000 000" },
+    insta:   { label: "Instagram",  handle: "@wanessa.kistela", href: "https://instagram.com/wanessa.kistela" }
+  },
+  footer: "[Twoja stopka, np.: © 2025 Wanessa Kistela — wszelkie prawa zastrzeżone]"
+};
+</script>
+<!-- ═════════════════════════════════════════════════════════ -->
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#hero"><img src="logo/logo.png" alt="Wanessa Kistela"></a>
+  <ul>
+    <li><a href="#o-mnie">O mnie</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#oferta">Oferta</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="nav-cta" href="#kontakt">Zarezerwuj sesję</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="carousel-track" id="track"></div>
+  <div class="hero-content">
+    <h1 id="hHero"></h1>
+    <p  id="hSub"></p>
+    <a  id="hCta" class="hero-cta" href="#kontakt"></a>
+  </div>
+  <div class="carousel-arrows">
+    <button class="arrow" id="prev">&#8592;</button>
+    <button class="arrow" id="next">&#8594;</button>
+  </div>
+  <div class="carousel-dots" id="dots"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="o-mnie">
+  <div class="about-img">
+    <img src="photo_of_me/me.jpg" alt="Wanessa Kistela — fotograf">
+  </div>
+  <div class="about-text">
+    <p class="section-tag" id="aTag"></p>
+    <h2 id="aHead"></h2>
+    <div id="aPara"></div>
+    <p class="about-signature" id="aSig"></p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="section-header">
+    <p class="section-tag" id="pTag"></p>
+    <h2 id="pHead"></h2>
+    <p id="pSub"></p>
+  </div>
+  <div class="portfolio-grid" id="pGrid"></div>
+</section>
+
+<!-- OFFER -->
+<section class="offer" id="oferta">
+  <div class="section-header">
+    <p class="section-tag" id="oTag"></p>
+    <h2 id="oHead"></h2>
+    <p id="oSub"></p>
+  </div>
+  <div class="offer-cards" id="oCards"></div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="contact-text">
+    <p class="section-tag" id="cTag"></p>
+    <h2 id="cHead"></h2>
+    <p id="cSub"></p>
+  </div>
+  <div class="contact-details" id="cDet"></div>
+</section>
+
+<footer id="foot"></footer>
+
+<script>
+const C = CONTENT;
+
+/* ── HERO CAROUSEL ── */
+const track = document.getElementById('track');
+const dotsEl = document.getElementById('dots');
+C.hero.slides.forEach((s,i) => {
+  track.innerHTML += `<div class="carousel-slide"><img src="${s.img}" alt="${s.alt}"><div class="slide-overlay"></div></div>`;
+  dotsEl.innerHTML += `<div class="dot${i===0?' active':''}" data-i="${i}"></div>`;
+});
+document.getElementById('hHero').textContent = C.hero.heading;
+document.getElementById('hSub').textContent  = C.hero.subheading;
+document.getElementById('hCta').textContent  = C.hero.ctaLabel;
+
+let cur=0;
+const n=C.hero.slides.length;
+const allDots=document.querySelectorAll('.dot');
+function goTo(x){
+  cur=(x+n)%n;
+  track.style.transform=`translateX(-${cur*100}%)`;
+  allDots.forEach((d,i)=>d.classList.toggle('active',i===cur));
+}
+document.getElementById('prev').onclick=()=>goTo(cur-1);
+document.getElementById('next').onclick=()=>goTo(cur+1);
+allDots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+setInterval(()=>goTo(cur+1),5000);
+
+/* ── ABOUT ── */
+document.getElementById('aTag').textContent=C.about.tag;
+document.getElementById('aHead').textContent=C.about.heading;
+document.getElementById('aSig').textContent=C.about.name;
+const pa=document.getElementById('aPara');
+C.about.paragraphs.forEach(t=>pa.innerHTML+=`<p>${t}</p>`);
+
+/* ── PORTFOLIO ── */
+document.getElementById('pTag').textContent=C.portfolio.tag;
+document.getElementById('pHead').textContent=C.portfolio.heading;
+document.getElementById('pSub').textContent=C.portfolio.sub;
+const pg=document.getElementById('pGrid');
+C.portfolio.photos.forEach(p=>pg.innerHTML+=`<div class="p-item"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`);
+
+/* ── OFFER ── */
+document.getElementById('oTag').textContent=C.offer.tag;
+document.getElementById('oHead').textContent=C.offer.heading;
+document.getElementById('oSub').textContent=C.offer.sub;
+const oc=document.getElementById('oCards');
+C.offer.cards.forEach(c=>oc.innerHTML+=`<div class="offer-card"><div class="offer-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.desc}</p></div>`);
+
+/* ── CONTACT ── */
+document.getElementById('cTag').textContent=C.contact.tag;
+document.getElementById('cHead').textContent=C.contact.heading;
+document.getElementById('cSub').textContent=C.contact.sub;
+document.getElementById('cDet').innerHTML=`
+  <div class="c-item">
+    <div class="c-icon email">✉️</div>
+    <div><p class="c-label">${C.contact.email.label}</p><a class="c-value" href="mailto:${C.contact.email.value}">${C.contact.email.value}</a></div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon phone">📞</div>
+    <div><p class="c-label">${C.contact.phone.label}</p><p class="c-value">${C.contact.phone.value}</p></div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon insta">📸</div>
+    <div><p class="c-label">${C.contact.insta.label}</p><a class="c-value" href="${C.contact.insta.href}" target="_blank">${C.contact.insta.handle}</a></div>
+  </div>`;
+
+/* ── FOOTER ── */
+document.getElementById('foot').textContent=C.footer;
+
+/* ── NAV SHADOW ON SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow=
+    window.scrollY>20?'0 2px 24px rgba(74,30,107,.09)':'none';
+});
+</script>
+</body>
+</html>

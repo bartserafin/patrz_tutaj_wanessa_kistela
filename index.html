@@ -47,7 +47,11 @@
       border-bottom:1px solid rgba(168,85,200,0.12);
       transition:box-shadow .3s;
     }
-    nav .logo img { height:50px; display:block; }
+    nav .logo img {
+      width:46px; height:46px; display:block;
+      border-radius:50%; object-fit:cover;
+      border:2px solid rgba(168,85,200,.2);
+    }
     nav ul { list-style:none; display:flex; gap:2.5rem; }
     nav ul a {
       text-decoration:none; color:var(--purple-dark);
@@ -280,25 +284,97 @@
       font-size:.78rem; letter-spacing:.04em;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── HAMBURGER ── */
+    .nav-burger {
+      display:none; flex-direction:column; justify-content:space-between;
+      width:28px; height:20px; background:none; border:none; cursor:pointer; padding:0;
+    }
+    .nav-burger span {
+      display:block; height:2px; background:var(--purple-dark);
+      border-radius:2px; transition:transform .3s, opacity .3s;
+    }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display:none; position:fixed; inset:0; z-index:300;
+      background:var(--bg); flex-direction:column;
+      align-items:center; justify-content:center; gap:2.5rem;
+    }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav ul { list-style:none; text-align:center; display:flex; flex-direction:column; gap:2rem; }
+    .mobile-nav ul a {
+      text-decoration:none; color:var(--purple-dark);
+      font-family:'Poppins',sans-serif; font-size:1.6rem; font-weight:700;
+      letter-spacing:.04em; transition:color .2s;
+    }
+    .mobile-nav ul a:hover { color:var(--orange); }
+    .mobile-nav-cta {
+      display:inline-block; background:var(--orange) !important;
+      color:#fff !important; padding:.8rem 2.2rem; border-radius:50px;
+      font-size:1rem !important; font-weight:600 !important;
+    }
+    .mobile-nav-close {
+      position:absolute; top:1.5rem; right:1.5rem;
+      background:none; border:none; font-size:1.6rem;
+      color:var(--purple-dark); cursor:pointer;
+    }
+
+    /* ── RESPONSIVE — TABLET ── */
     @media(max-width:900px){
       nav { padding:1rem 1.5rem; }
-      nav ul { display:none; }
-      .hero-content { left:1.5rem; max-width:90%; }
+      nav ul, .nav-cta { display:none; }
+      .nav-burger { display:flex; }
+      .hero-content { left:1.5rem; bottom:8%; max-width:90%; }
       .carousel-dots { right:1.5rem; }
+      .arrow { width:38px; height:38px; }
       .about { grid-template-columns:1fr; }
       .about-img { height:65vw; }
-      .about-text { padding:3rem 1.5rem; }
+      .about-text { padding:3.5rem 2rem; }
       .portfolio { padding:4rem 1.5rem; }
       .portfolio-grid { grid-template-columns:repeat(2,1fr); }
       .p-item:nth-child(2),.p-item:nth-child(5) { margin:0; }
       .opinions { padding:4rem 1.5rem; }
-      .opinion-slide { flex-direction:column; gap:1.5rem; }
-      .opinion-photo { width:100%; height:220px; }
+      .opinion-slide { grid-template-columns:1fr; gap:1.5rem; }
+      .opinion-photo { aspect-ratio:4/3; }
+      .opinion-body { padding:0 .5rem 1.5rem; }
       .contact { grid-template-columns:1fr; }
-      .contact-left { padding:3rem 1.5rem; }
+      .contact-left { padding:3rem 2rem; }
       .contact-photo { height:65vw; }
     }
+
+    /* ── RESPONSIVE — MOBILE ── */
+    @media(max-width:540px){
+      .hero-content h1 { font-size:2rem; }
+      .hero-content p { font-size:.9rem; }
+      .hero-cta { padding:.75rem 1.6rem; font-size:.85rem; }
+      .carousel-arrows { padding:0 .5rem; }
+      .about-img { height:80vw; }
+      .about-text { padding:2.5rem 1.2rem; }
+      .about-text h2 { font-size:1.6rem; }
+      .portfolio { padding:3rem 1rem; }
+      .portfolio-grid { grid-template-columns:1fr; }
+      .opinions { padding:3rem 1rem; }
+      .opinion-slide { gap:1rem; }
+      .opinion-photo { aspect-ratio:3/2; }
+      .opinion-body { padding:0 .25rem 1rem; }
+      .opinion-name { font-size:1rem; }
+      .opinion-quote { font-size:.9rem; }
+      .contact-left { padding:2.5rem 1.2rem; }
+      .contact-left h2 { font-size:1.8rem; }
+      .contact-photo { height:80vw; }
+      .opinions-controls { margin-top:1.5rem; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity:0;
+      transform:translateY(36px);
+      transition:opacity .85s ease, transform .85s ease;
+    }
+    .reveal.v { opacity:1; transform:none; }
+    .reveal.delay-1 { transition-delay:.12s; }
+    .reveal.delay-2 { transition-delay:.24s; }
+    .reveal.delay-3 { transition-delay:.36s; }
   </style>
 </head>
 <body>
@@ -395,15 +471,30 @@ const CONTENT = {
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#hero"><img src="logo/logo.png" alt="Wanessa Kistela"></a>
-  <ul>
+  <a class="logo" href="#hero"><img src="https://images.pexels.com/photos/30818585/pexels-photo-30818585/free-photo-of-bukiet-z-zywych-gerber-i-tulipanow.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Wanessa Kistela"></a>
+  <ul id="nav-links">
     <li><a href="#o-mnie">O mnie</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="#opinie">Opinie</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <a class="nav-cta" href="#kontakt">Zarezerwuj sesję</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close">&#10005;</button>
+  <ul>
+    <li><a href="#o-mnie">O mnie</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="#opinie">Opinie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="mobile-nav-cta">Zarezerwuj sesję</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -422,10 +513,10 @@ const CONTENT = {
 
 <!-- ABOUT -->
 <section class="about" id="o-mnie">
-  <div class="about-img">
+  <div class="about-img reveal">
     <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela — fotograf">
   </div>
-  <div class="about-text">
+  <div class="about-text reveal delay-1">
     <p class="section-tag" id="aTag"></p>
     <h2 id="aHead"></h2>
     <div id="aPara"></div>
@@ -435,7 +526,7 @@ const CONTENT = {
 
 <!-- PORTFOLIO -->
 <section class="portfolio" id="portfolio">
-  <div class="section-header">
+  <div class="section-header reveal">
     <p class="section-tag" id="pTag"></p>
     <h2 id="pHead"></h2>
     <p id="pSub"></p>
@@ -445,16 +536,16 @@ const CONTENT = {
 
 <!-- OPINIONS -->
 <section class="opinions" id="opinie">
-  <div class="section-header">
+  <div class="section-header reveal">
     <p class="section-tag" id="opTag"></p>
     <h2 id="opHead"></h2>
   </div>
-  <div class="opinions-inner">
+  <div class="opinions-inner reveal delay-1">
     <div class="opinions-viewport">
       <div class="opinions-track" id="opTrack"></div>
     </div>
   </div>
-  <div class="opinions-controls">
+  <div class="opinions-controls reveal delay-2">
     <button class="op-arrow" id="opPrev">&#8592;</button>
     <div class="op-dots" id="opDots"></div>
     <button class="op-arrow" id="opNext">&#8594;</button>
@@ -463,18 +554,18 @@ const CONTENT = {
 
 <!-- CONTACT -->
 <section class="contact" id="kontakt">
-  <div class="contact-left">
+  <div class="contact-left reveal">
     <p class="section-tag" id="cTag"></p>
     <h2 id="cHead"></h2>
     <p id="cSub" style="color:var(--muted);line-height:1.8;font-size:.97rem;margin-bottom:2.5rem;"></p>
     <div class="contact-items" id="cDet"></div>
   </div>
-  <div class="contact-photo">
+  <div class="contact-photo reveal delay-1">
     <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela">
   </div>
 </section>
 
-<footer id="foot"></footer>
+<footer id="foot" class="reveal"></footer>
 
 <script>
 const C = CONTENT;
@@ -501,7 +592,7 @@ function goTo(x){
 document.getElementById('prev').onclick=()=>goTo(cur-1);
 document.getElementById('next').onclick=()=>goTo(cur+1);
 allDots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
-setInterval(()=>goTo(cur+1),5000);
+setInterval(()=>goTo(cur+1),3000);
 
 /* ── ABOUT ── */
 document.getElementById('aTag').textContent=C.about.tag;
@@ -515,7 +606,10 @@ document.getElementById('pTag').textContent=C.portfolio.tag;
 document.getElementById('pHead').textContent=C.portfolio.heading;
 document.getElementById('pSub').textContent=C.portfolio.sub;
 const pg=document.getElementById('pGrid');
-C.portfolio.photos.forEach(p=>pg.innerHTML+=`<div class="p-item"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`);
+C.portfolio.photos.forEach((p,i)=>{
+  const d=['','delay-1','delay-2'][i%3];
+  pg.innerHTML+=`<div class="p-item reveal ${d}"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`;
+});
 
 /* ── OPINIONS ── */
 document.getElementById('opTag').textContent=C.opinions.tag;
@@ -598,11 +692,28 @@ document.getElementById('cDet').innerHTML=`
 /* ── FOOTER ── */
 document.getElementById('foot').textContent=C.footer;
 
+/* ── MOBILE NAV ── */
+const mobileNav = document.getElementById('mobile-nav');
+document.getElementById('nav-burger').onclick = () => mobileNav.classList.add('open');
+document.getElementById('mobile-nav-close').onclick = () => mobileNav.classList.remove('open');
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
 /* ── NAV SHADOW ON SCROLL ── */
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').style.boxShadow=
     window.scrollY>20?'0 2px 24px rgba(74,30,107,.09)':'none';
 });
+
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('v');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>

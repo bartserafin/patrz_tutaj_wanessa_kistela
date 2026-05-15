@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <template id="__bundler_thumbnail" data-bg-color="#f5f4f1">
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="500" fill="#f5f4f1"></rect>
+      <rect x="0" y="0" width="800" height="280" fill="#c2bdb8"></rect>
+      <rect x="60" y="20" width="680" height="240" fill="#a8a09a" opacity="0.5"></rect>
+      <text x="400" y="175" font-family="Georgia, serif" font-style="italic" font-size="96" fill="white"
+        text-anchor="middle" opacity="0.85">WK</text>
+      <rect x="0" y="280" width="800" height="220" fill="#f5f4f1"></rect>
+      <rect x="60" y="310" width="200" height="150" fill="#c8c0b8"></rect>
+      <rect x="300" y="310" width="200" height="150" fill="#b0b8b4"></rect>
+      <rect x="540" y="310" width="200" height="150" fill="#8890a0"></rect>
+    </svg>
+  </template>
+  <title>Wanessa Kistela – Fotograf Szczecin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <ul class="nav-links">
+      <li><a href="#o-mnie">O mnie</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+    </ul>
+    <a href="#hero" class="nav-logo" style="font-family: &quot;Dancing Script&quot;; font-size: 50px">WK</a>
+    <ul class="nav-links">
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ───────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-carousel" aria-label="Hero image carousel">
+      <div class="hero-slide slide-center"
+        aria-label="Stylish fashion portrait in moody lighting"
+        style="background-image: linear-gradient(165deg, rgba(194, 189, 184, 0.45) 0%, rgba(56, 52, 49, 0.40) 52%, rgba(28, 28, 26, 0.55) 100%), url('https://images.pexels.com/photos/32695902/pexels-photo-32695902.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+      </div>
+      <div class="hero-slide slide-right"
+        aria-label="Soft fashion portrait with warm palette"
+        style="background-image: linear-gradient(165deg, rgba(194, 189, 184, 0.45) 0%, rgba(56, 52, 49, 0.40) 52%, rgba(28, 28, 26, 0.55) 100%), url('https://images.pexels.com/photos/35502300/pexels-photo-35502300.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+      </div>
+    </div>
+    <p class="hero-subtitle">Fotograf &nbsp;·&nbsp; Szczecin</p>
+  </section>
+
+  <!-- ─── ABOUT ──────────────────────────────────────────────────── -->
+  <section id="o-mnie">
+    <div class="about-top reveal">
+      <p class="eyebrow">Szukasz doświadczonego fotografa na terenie Szczecina?</p>
+      <h1 class="about-headline"><em>Świetnie</em> Trafiłaś.</h1>
+    </div>
+    <div class="about-columns">
+      <div class="about-photo ph reveal delay-1" role="img" aria-label="Portrait of a photographer"
+        style="background-image: url('https://images.pexels.com/photos/35502300/pexels-photo-35502300.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+      </div>
+      <div class="about-bio reveal delay-2">
+        <h2>Wanessa</h2>
+        <p>Jestem fotografką, która wykonuje profesjonalne zdjęcia na terenie Szczecina.</p>
+        <p>Specjalizuję się w indywidualnych sesjach wizerunkowych i rodzinnych.</p>
+        <p>Bez względu na rodzaj zdjęć i ich przeznaczenie, stawiam na niebanalne i kreatywne rozwiązania, 
+          by efekt każdej sesji zdjęciowej był nie tylko na najwyższym poziomie, 
+          ale także zachwycił i pozostawił w pamięci na długo. 
+          Każdą sesję traktuję indywidualnie, słucham potrzeb i dbam o to, żeby efekt końcowy był czymś, 
+          do czego będziecie wracać z uśmiechem. </p>
+        <a href="#kontakt" class="btn-outline">Poznaj mnie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ───────────────────────────────────────────────── -->
+  <section id="portfolio">
+    <h2 class="section-heading reveal">Portfolio</h2>
+    <div class="filter-bar reveal delay-1">
+      <button class="filter-btn active" data-filter="all">Wszystkie</button>
+      <button class="filter-btn" data-filter="portret">Portret</button>
+      <button class="filter-btn" data-filter="biznes">Biznes</button>
+      <button class="filter-btn" data-filter="slubna">Ślubna</button>
+    </div>
+
+    <div class="masonry reveal delay-2">
+      <!-- col 1 -->
+      <div class="grid-item" data-cat="portret">
+        <div class="grid-photo ph" role="img" aria-label="Portret modelki w miękkim świetle"
+          style="height:490px; background: url('https://images.pexels.com/photos/5856745/pexels-photo-5856745.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="biznes">
+        <div class="grid-photo ph" role="img" aria-label="Biznesowy portret w eleganckim wnętrzu"
+          style="height:310px; background: url('https://images.pexels.com/photos/5715859/pexels-photo-5715859.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="portret">
+        <div class="grid-photo ph" role="img" aria-label="Portret mężczyzny patrzącego w obiektyw"
+          style="height:400px; background: url('https://images.pexels.com/photos/32508763/pexels-photo-32508763.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <!-- col 2 -->
+      <div class="grid-item" data-cat="slubna">
+        <div class="grid-photo ph" role="img" aria-label="Para ślubna w eleganckim ujęciu"
+          style="height:360px; background: url('https://images.pexels.com/photos/11410456/pexels-photo-11410456.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="portret">
+        <div class="grid-photo ph" role="img" aria-label="Artystyczny portret kobiety z nastrojowym oświetleniem"
+          style="height:440px; background: url('https://images.pexels.com/photos/10093321/pexels-photo-10093321.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="biznes">
+        <div class="grid-photo ph" role="img" aria-label="Profesjonalny portret biznesowy"
+          style="height:300px; background: url('https://images.pexels.com/photos/7877195/pexels-photo-7877195.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <!-- col 3 -->
+      <div class="grid-item" data-cat="biznes">
+        <div class="grid-photo ph" role="img" aria-label="Biznesowa fotografia reportażowa"
+          style="height:530px; background: url('https://images.pexels.com/photos/5715850/pexels-photo-5715850.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="slubna">
+        <div class="grid-photo ph" role="img" aria-label="Elegancka suknia ślubna i naturalne światło"
+          style="height:380px; background: url('https://images.pexels.com/photos/34274500/pexels-photo-34274500.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+      <div class="grid-item" data-cat="slubna">
+        <div class="grid-photo ph" role="img" aria-label="Bukiet ślubny i delikatna kompozycja"
+          style="height:290px; background: url('https://images.pexels.com/photos/31047427/pexels-photo-31047427.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+        </div>
+        <div class="grid-overlay"><span class="grid-overlay-label">Zobacz</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ────────────────────────────────────────────── -->
+  <section id="opinie">
+    <h2 class="opinie-heading reveal">Opinie Zadowolonych Klientów</h2>
+    <div class="carousel-wrap reveal delay-1">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="c-track">
+
+          <div class="testimonial-slide">
+            <div class="testi-photo ph" role="img" aria-label="Portrait of a happy client"
+              style="background: url('https://images.pexels.com/photos/5393826/pexels-photo-5393826.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+            </div>
+            <div class="testi-content">
+              <p class="testi-name">Paulina</p>
+              <p class="testi-session">Sesja wizerunkowa</p>
+              <p class="testi-quote">Bardzo długo szukałam fotografa takiego jak Wanessa. Nie boi się próbować nowych
+                rzeczy, jest bardzo otwarta i cudownie ciepła osobowością. Wyniki przeszły moje oczekiwania. To była
+                przyjemność, naprawdę podbiła moje serce wspaniałą pracą. Niewielu osobom to mówię — dziękuję.</p>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testi-photo ph" role="img" aria-label="Biznesowy portret klientki"
+            style="background: url('https://images.pexels.com/photos/5856745/pexels-photo-5856745.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+          </div>
+            <div class="testi-content">
+              <p class="testi-name">Katarzyna</p>
+              <p class="testi-session">Sesja biznesowa</p>
+              <p class="testi-quote">Profesjonalizm na każdym kroku. Wanessa potrafiła mnie rozluźnić i sprawić, że
+                czułam się swobodnie przed obiektywem. Zdjęcia do portfolio wyglądają fantastycznie — dostałam mnóstwo
+                komplementów od klientów i współpracowników. Polecam z całego serca!</p>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testi-photo ph" role="img" aria-label="Portret pary ślubnej"
+            style="background: url('https://images.pexels.com/photos/11474283/pexels-photo-11474283.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover no-repeat;">
+          </div>
+            <div class="testi-content">
+              <p class="testi-name">Marta &amp; Tomasz</p>
+              <p class="testi-session">Sesja ślubna</p>
+              <p class="testi-quote">Nasz ślub to był najpiękniejszy dzień w życiu, a Wanessa uwieczniła go w sposób,
+                który nas zachwycił. Każde zdjęcie opowiada historię — pełne emocji, naturalności i piękna. To
+                wspomnienia, do których będziemy wracać przez całe życie.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="c-arrow" id="c-prev">&#8592;</button>
+        <div class="c-dots">
+          <button class="c-dot active" data-i="0"></button>
+          <button class="c-dot" data-i="1"></button>
+          <button class="c-dot" data-i="2"></button>
+        </div>
+        <button class="c-arrow" id="c-next">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─────────────────────────────────────────────────── -->
+  <section id="kontakt">
+    <div class="contact-layout">
+
+      <div class="contact-info reveal">
+        <h2>Skontaktuj<br>się</h2>
+        <div class="cdetail">
+          <svg class="cdetail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+            <circle cx="12" cy="9" r="2.5" />
+          </svg>
+          <div>
+            <h4>gdzie mnie znajdziesz?</h4>
+            <p>Szczecin</p>
+          </div>
+        </div>
+        <div class="cdetail">
+          <svg class="cdetail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+          <div>
+            <h4>Numer kontaktowy:</h4>
+            <p>+48 880 150 066</p>
+          </div>
+        </div>
+        <div class="cdetail">
+          <svg class="cdetail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <div>
+            <h4>Adres email:</h4>
+            <p>wanessa.kistela1@gmail.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-photo ph reveal delay-1" role="img" aria-label="Studio portrait with dark backdrop"
+        style="background-image: url('https://images.pexels.com/photos/10093321/pexels-photo-10093321.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+      </div>
+
+      <form class="contact-form reveal delay-2" onsubmit="return false;">
+        <input type="text" placeholder="Imię">
+        <input type="tel" placeholder="Telefon kontaktowy">
+        <div class="form-row">
+          <input type="email" placeholder="Wpisz adres email">
+          <input type="email" placeholder="Potwierdź adres email">
+        </div>
+        <textarea placeholder="Wiadomość"></textarea>
+        <button type="submit" class="btn-send">Wyślij</button>
+      </form>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <ul class="footer-nav">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#o-mnie">O mnie</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#">Realizacje</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#">Polityka prywatności</a></li>
+      </ul>
+      <div class="footer-logo">WK</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+      <p class="footer-copy">Prawa autorskie &copy; 2026 Wanessa Kistela &nbsp;·&nbsp; Projekt i wykonanie</p>
+    </footer>
+  </section>
+
+  <!-- ─── TWEAKS PANEL ────────────────────────────────────────────── -->
+  <div id="tweaks-panel">
+    <div class="tweaks-title">
+      Tweaks
+      <button class="tweaks-close" id="tweaks-close-btn">&times;</button>
+    </div>
+
+    <div class="tweak-row">
+      <span class="tweak-label">Sekcja "About" — tło</span>
+      <div class="tweak-seg" id="seg-about-bg">
+        <button class="seg-btn active" data-val="#68625e">Ciepły szary</button>
+        <button class="seg-btn" data-val="#3a3836">Ciemny</button>
+        <button class="seg-btn" data-val="#5a6068">Stalowy</button>
+      </div>
+    </div>
+
+    <div class="tweak-row">
+      <span class="tweak-label">Akcent nawigacji</span>
+      <div class="tweak-seg" id="seg-nav-accent">
+        <button class="seg-btn active" data-val="rgba(255,255,255,0.9)">Biały</button>
+        <button class="seg-btn" data-val="rgba(200,190,180,0.9)">Krem</button>
+        <button class="seg-btn" data-val="rgba(180,200,210,0.9)">Lodowy</button>
+      </div>
+    </div>
+
+    <div class="tweak-row">
+      <span class="tweak-label">Kolor przycisku wysyłki</span>
+      <input type="color" id="pick-btn-color" value="#1c1c1a">
+    </div>
+
+    <div class="tweak-row">
+      <span class="tweak-label">Czcionka tytułów</span>
+      <select id="sel-font">
+        <option value="'Cormorant Garamond', Georgia, serif">Cormorant Garamond</option>
+        <option value="'Playfair Display', Georgia, serif">Playfair Display</option>
+        <option value="Georgia, serif">Georgia</option>
+      </select>
+    </div>
+  </div>
+
+  <script>
+    /* ── NAV scroll ── */
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── SCROLL REVEAL ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('v');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => ro.observe(r));
+
+    /* ── PORTFOLIO FILTER ── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        gridItems.forEach(item => {
+          const show = f === 'all' || item.dataset.cat === f;
+          item.style.opacity = '0';
+          if (show) {
+            item.style.display = '';
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => { item.style.opacity = '1'; });
+            });
+          } else {
+            setTimeout(() => { item.style.display = 'none'; }, 400);
+          }
+        });
+      });
+    });
+    gridItems.forEach(item => { item.style.transition = 'opacity 0.4s ease'; });
+
+    /* ── HERO CAROUSEL ── */
+    const heroImages = [
+      {
+        url: 'https://images.pexels.com/photos/32695902/pexels-photo-32695902.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        alt: 'Stylish fashion portrait in moody lighting'
+      },
+      {
+        url: 'https://images.pexels.com/photos/35502300/pexels-photo-35502300.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        alt: 'Soft fashion portrait with warm palette'
+      },
+      {
+        url: 'https://images.pexels.com/photos/10093321/pexels-photo-10093321.jpeg?auto=compress&cs=tinysrgb&w=1600',
+        alt: 'Artistic portrait with elegant mood'
+      }
+    ];
+    const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+    let heroIndex = 0;
+
+    function setHeroSlide(slide, index) {
+      slide.style.backgroundImage = `linear-gradient(165deg, rgba(194, 189, 184, 0.45) 0%, rgba(56, 52, 49, 0.40) 52%, rgba(28, 28, 26, 0.55) 100%), url('${heroImages[index].url}')`;
+      slide.setAttribute('aria-label', heroImages[index].alt);
+    }
+
+    function advanceHero() {
+      const nextIndex = (heroIndex + 1) % heroImages.length;
+      const current = heroSlides[0];
+      const next = heroSlides[1];
+
+      current.classList.replace('slide-center', 'slide-left');
+      next.classList.replace('slide-right', 'slide-center');
+      heroSlides.push(heroSlides.shift());
+      heroIndex = nextIndex;
+
+      setTimeout(() => {
+        const resetSlide = heroSlides[1];
+        resetSlide.className = 'hero-slide slide-right';
+        setHeroSlide(resetSlide, (heroIndex + 1) % heroImages.length);
+      }, 900);
+    }
+
+    setHeroSlide(heroSlides[0], 0);
+    setHeroSlide(heroSlides[1], 1);
+    let heroTimer = setInterval(advanceHero, 6000);
+    document.querySelector('#hero').addEventListener('mouseenter', () => clearInterval(heroTimer));
+    document.querySelector('#hero').addEventListener('mouseleave', () => {
+      heroTimer = setInterval(advanceHero, 6000);
+    });
+
+    /* ── CAROUSEL ── */
+    let cur = 0;
+    const track = document.getElementById('c-track');
+    const dots = document.querySelectorAll('.c-dot');
+    const total = document.querySelectorAll('.testimonial-slide').length;
+
+    function goTo(n) {
+      cur = ((n % total) + total) % total;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
+
+    document.getElementById('c-prev').addEventListener('click', () => goTo(cur - 1));
+    document.getElementById('c-next').addEventListener('click', () => goTo(cur + 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+    let autoTimer = setInterval(() => goTo(cur + 1), 6000);
+    document.querySelector('.carousel-wrap').addEventListener('mouseenter', () => clearInterval(autoTimer));
+    document.querySelector('.carousel-wrap').addEventListener('mouseleave', () => {
+      autoTimer = setInterval(() => goTo(cur + 1), 6000);
+    });
+
+    /* ── TWEAKS ── */
+    window.addEventListener('message', e => {
+      if (e.data && e.data.type === '__activate_edit_mode') showTweaks(true);
+      if (e.data && e.data.type === '__deactivate_edit_mode') showTweaks(false);
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+    function showTweaks(on) {
+      document.getElementById('tweaks-panel').classList.toggle('open', on);
+    }
+    document.getElementById('tweaks-close-btn').addEventListener('click', () => {
+      showTweaks(false);
+      window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+    });
+
+    // About bg
+    document.getElementById('seg-about-bg').addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      document.querySelectorAll('#seg-about-bg .seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('o-mnie').style.background = btn.dataset.val;
+    });
+
+    // Nav accent
+    document.getElementById('seg-nav-accent').addEventListener('click', e => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      document.querySelectorAll('#seg-nav-accent .seg-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.nav-links a, .nav-logo').forEach(a => {
+        a.style.color = btn.dataset.val;
+      });
+    });
+
+    // Button color
+    document.getElementById('pick-btn-color').addEventListener('input', e => {
+      document.querySelector('.btn-send').style.background = e.target.value;
+      document.querySelector('.btn-outline').style.borderColor = e.target.value + '99';
+    });
+
+    // Font
+    document.getElementById('sel-font').addEventListener('change', e => {
+      document.querySelectorAll('.about-headline, .section-heading, .opinie-heading, .testi-name, .footer-logo, .nav-logo, .about-bio h2, .contact-info h2, h2.opinie-heading').forEach(el => {
+        el.style.fontFamily = e.target.value;
+      });
+    });
+  </script>
+
+</body>
+
+</html>

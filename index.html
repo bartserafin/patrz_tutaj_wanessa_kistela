@@ -47,7 +47,11 @@
       border-bottom:1px solid rgba(168,85,200,0.12);
       transition:box-shadow .3s;
     }
-    nav .logo img { height:50px; display:block; }
+    nav .logo img {
+      width:46px; height:46px; display:block;
+      border-radius:50%; object-fit:cover;
+      border:2px solid rgba(168,85,200,.2);
+    }
     nav ul { list-style:none; display:flex; gap:2.5rem; }
     nav ul a {
       text-decoration:none; color:var(--purple-dark);
@@ -93,6 +97,7 @@
       transition:background .2s, transform .15s;
     }
     .hero-cta:hover { background:#d43d15; transform:translateY(-2px); }
+    .hero-content b, .hero-content strong { font-weight:700; }
 
     .carousel-arrows {
       position:absolute; top:50%; transform:translateY(-50%);
@@ -184,57 +189,93 @@
     }
     .p-item:hover .p-overlay { opacity:1; }
 
-    /* ── OFFER ── */
-    .offer { padding:6rem 4rem; background:var(--bg2); }
-    .offer-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3.5rem; }
-    .offer-card {
-      background:var(--bg); border-radius:18px; padding:2.5rem 2rem;
-      border:1px solid rgba(168,85,200,.15);
-      position:relative; overflow:hidden;
-      transition:transform .2s, box-shadow .2s;
+    /* ── OPINIONS ── */
+    .opinions { padding:6rem 4rem; background:var(--bg2); overflow:hidden; }
+    .opinions-inner { max-width:960px; margin:0 auto; }
+    .opinions-viewport { overflow:hidden; }
+    .opinions-track {
+      display:flex;
+      transition:transform .65s cubic-bezier(.4,0,.2,1);
     }
-    .offer-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(74,30,107,.1); }
-    .offer-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    .opinion-slide {
+      min-width:100%;
+      display:grid;
+      grid-template-columns:1fr 1.05fr;
+      gap:80px;
+      align-items:center;
     }
-    .offer-card:nth-child(1)::before { background:var(--yellow); }
-    .offer-card:nth-child(2)::before { background:var(--orange); }
-    .offer-card:nth-child(3)::before { background:var(--purple); }
-    .offer-icon { font-size:2rem; margin-bottom:1rem; }
-    .offer-card h3 {
-      font-family:'Poppins',sans-serif; font-size:1.15rem;
-      font-weight:700; color:var(--purple-dark); margin-bottom:.7rem;
+    .opinion-photo {
+      aspect-ratio:3/4;
+      border-radius:14px; overflow:hidden;
     }
-    .offer-card p { color:var(--muted); line-height:1.75; font-size:.92rem; }
+    .opinion-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .opinion-body { display:flex; flex-direction:column; justify-content:center; }
+    .opinion-name {
+      font-family:'Poppins',sans-serif; font-size:1.2rem;
+      font-weight:700; color:var(--purple-dark); margin-bottom:.25rem;
+    }
+    .opinion-session {
+      font-size:.78rem; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem;
+    }
+    .opinion-quote {
+      color:var(--muted); line-height:1.85; font-size:1rem;
+      font-style:italic;
+    }
+    .opinion-quote::before { content:'\201C'; font-size:2rem; color:var(--purple-lt); line-height:0; vertical-align:-.4em; margin-right:.2rem; }
+    .opinions-controls {
+      display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:2.5rem;
+    }
+    .op-arrow {
+      width:40px; height:40px; border-radius:50%;
+      background:var(--purple-dark); color:#fff; border:none;
+      font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    .op-arrow:hover { background:var(--orange); }
+    .op-dots { display:flex; gap:.5rem; }
+    .op-dot {
+      width:8px; height:8px; border-radius:50%;
+      background:rgba(74,30,107,.2); border:none; cursor:pointer;
+      transition:background .3s, transform .3s;
+    }
+    .op-dot.active { background:var(--purple); transform:scale(1.45); }
 
     /* ── CONTACT ── */
     .contact {
-      padding:6rem 4rem; background:var(--purple-dark);
-      display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+      display:grid; grid-template-columns:1fr 1fr; min-height:85vh;
+      background:var(--bg);
     }
-    .contact .section-tag { color:var(--yellow); }
-    .contact-text h2 {
+    .contact-left {
+      padding:6rem 5rem;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .contact-left h2 {
       font-family:'Poppins',sans-serif;
-      font-size:clamp(1.8rem,2.8vw,2.6rem); font-weight:800;
-      color:#fff; line-height:1.2; margin-bottom:1.2rem;
+      font-size:clamp(2.2rem,3.5vw,3.4rem); font-weight:800;
+      color:var(--purple-dark); line-height:1.1; margin-bottom:3rem;
     }
-    .contact-text p { color:rgba(255,255,255,.6); line-height:1.8; font-size:.97rem; }
-    .contact-details { display:flex; flex-direction:column; gap:1.6rem; }
-    .c-item { display:flex; align-items:center; gap:1.2rem; }
-    .c-icon {
-      width:50px; height:50px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem; flex-shrink:0;
+    .contact-items { display:flex; flex-direction:column; gap:2.2rem; }
+    .c-item { display:flex; align-items:flex-start; gap:1rem; }
+    .c-icon-wrap {
+      width:38px; height:38px; border-radius:50%; flex-shrink:0;
+      background:var(--bg2); display:flex; align-items:center; justify-content:center;
+      margin-top:.15rem;
     }
-    .c-icon.email { background:var(--orange); }
-    .c-icon.phone { background:var(--purple); }
-    .c-icon.insta { background:var(--pink); }
+    .c-icon-wrap svg { width:16px; height:16px; stroke:var(--purple); }
+    .c-item-text { display:flex; flex-direction:column; gap:.3rem; }
     .c-label {
-      font-size:.7rem; text-transform:uppercase; letter-spacing:.12em;
-      color:rgba(255,255,255,.4); margin-bottom:.25rem;
+      font-size:.68rem; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--muted);
     }
-    .c-value { color:#fff; font-size:.98rem; font-weight:500; text-decoration:none; }
-    .c-value:hover { color:var(--yellow); }
+    .c-value {
+      font-size:1.05rem; font-weight:500;
+      color:var(--purple-dark); text-decoration:none;
+      transition:color .2s;
+    }
+    .c-value:hover { color:var(--orange); }
+    .contact-photo { position:relative; overflow:hidden; }
+    .contact-photo img { width:100%; height:100%; object-fit:cover; display:block; }
 
     /* ── FOOTER ── */
     footer {
@@ -243,22 +284,97 @@
       font-size:.78rem; letter-spacing:.04em;
     }
 
-    /* ── RESPONSIVE ── */
+    /* ── HAMBURGER ── */
+    .nav-burger {
+      display:none; flex-direction:column; justify-content:space-between;
+      width:28px; height:20px; background:none; border:none; cursor:pointer; padding:0;
+    }
+    .nav-burger span {
+      display:block; height:2px; background:var(--purple-dark);
+      border-radius:2px; transition:transform .3s, opacity .3s;
+    }
+
+    /* ── MOBILE NAV OVERLAY ── */
+    .mobile-nav {
+      display:none; position:fixed; inset:0; z-index:300;
+      background:var(--bg); flex-direction:column;
+      align-items:center; justify-content:center; gap:2.5rem;
+    }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav ul { list-style:none; text-align:center; display:flex; flex-direction:column; gap:2rem; }
+    .mobile-nav ul a {
+      text-decoration:none; color:var(--purple-dark);
+      font-family:'Poppins',sans-serif; font-size:1.6rem; font-weight:700;
+      letter-spacing:.04em; transition:color .2s;
+    }
+    .mobile-nav ul a:hover { color:var(--orange); }
+    .mobile-nav-cta {
+      display:inline-block; background:var(--orange) !important;
+      color:#fff !important; padding:.8rem 2.2rem; border-radius:50px;
+      font-size:1rem !important; font-weight:600 !important;
+    }
+    .mobile-nav-close {
+      position:absolute; top:1.5rem; right:1.5rem;
+      background:none; border:none; font-size:1.6rem;
+      color:var(--purple-dark); cursor:pointer;
+    }
+
+    /* ── RESPONSIVE — TABLET ── */
     @media(max-width:900px){
       nav { padding:1rem 1.5rem; }
-      nav ul { display:none; }
-      .hero-content { left:1.5rem; max-width:90%; }
+      nav ul, .nav-cta { display:none; }
+      .nav-burger { display:flex; }
+      .hero-content { left:1.5rem; bottom:8%; max-width:90%; }
       .carousel-dots { right:1.5rem; }
+      .arrow { width:38px; height:38px; }
       .about { grid-template-columns:1fr; }
       .about-img { height:65vw; }
-      .about-text { padding:3rem 1.5rem; }
+      .about-text { padding:3.5rem 2rem; }
       .portfolio { padding:4rem 1.5rem; }
       .portfolio-grid { grid-template-columns:repeat(2,1fr); }
       .p-item:nth-child(2),.p-item:nth-child(5) { margin:0; }
-      .offer { padding:4rem 1.5rem; }
-      .offer-cards { grid-template-columns:1fr; }
-      .contact { grid-template-columns:1fr; padding:4rem 1.5rem; gap:2.5rem; }
+      .opinions { padding:4rem 1.5rem; }
+      .opinion-slide { grid-template-columns:1fr; gap:1.5rem; }
+      .opinion-photo { aspect-ratio:4/3; }
+      .opinion-body { padding:0 .5rem 1.5rem; }
+      .contact { grid-template-columns:1fr; }
+      .contact-left { padding:3rem 2rem; }
+      .contact-photo { height:65vw; }
     }
+
+    /* ── RESPONSIVE — MOBILE ── */
+    @media(max-width:540px){
+      .hero-content h1 { font-size:2rem; }
+      .hero-content p { font-size:.9rem; }
+      .hero-cta { padding:.75rem 1.6rem; font-size:.85rem; }
+      .carousel-arrows { padding:0 .5rem; }
+      .about-img { height:80vw; }
+      .about-text { padding:2.5rem 1.2rem; }
+      .about-text h2 { font-size:1.6rem; }
+      .portfolio { padding:3rem 1rem; }
+      .portfolio-grid { grid-template-columns:1fr; }
+      .opinions { padding:3rem 1rem; }
+      .opinion-slide { gap:1rem; }
+      .opinion-photo { aspect-ratio:3/2; }
+      .opinion-body { padding:0 .25rem 1rem; }
+      .opinion-name { font-size:1rem; }
+      .opinion-quote { font-size:.9rem; }
+      .contact-left { padding:2.5rem 1.2rem; }
+      .contact-left h2 { font-size:1.8rem; }
+      .contact-photo { height:80vw; }
+      .opinions-controls { margin-top:1.5rem; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity:0;
+      transform:translateY(36px);
+      transition:opacity .85s ease, transform .85s ease;
+    }
+    .reveal.v { opacity:1; transform:none; }
+    .reveal.delay-1 { transition-delay:.12s; }
+    .reveal.delay-2 { transition-delay:.24s; }
+    .reveal.delay-3 { transition-delay:.36s; }
   </style>
 </head>
 <body>
@@ -270,70 +386,115 @@
 const CONTENT = {
   hero: {
     slides: [
-      { img: "carousel/01.jpg", alt: "Sesja portretowa" },
-      { img: "carousel/02.jpg", alt: "Sesja plenerowa" },
-      { img: "carousel/03.jpg", alt: "Sesja studyjna" }
+      { img: "logo/Patrz (1).jpg", alt: "Patrz tutaj logo" },
+      { img: "carousel/065A1592-2.jpg", alt: "Sesja produktu" },
+      { img: "carousel/065A3264.jpg", alt: "Sesja kawa" },
+      { img: "carousel/065A3320.jpg", alt: "Sesja studyjna" },
+      { img: "carousel/065A1909.jpg", alt: "Sesja domowa", objectPosition: "center 25%" }
     ],
-    heading:    "[Twoje hasło przewodnie]",
-    subheading: "[Krótki opis — czym się zajmujesz i co wyróżnia Twoje sesje. Jedno lub dwa zdania.]",
+    heading:    "Fotograf Szczecin",
+    subheading: "Szukasz doświadczonego fotografa na terenie Szczecina i okolic?<br><b>Świetnie trafiłaś!</b>",
     ctaLabel:   "Zarezerwuj sesję"
   },
   about: {
     tag:      "O mnie",
-    heading:  "[Nagłówek sekcji 'O mnie']",
+    heading:  "Wanessa Kistela",
     paragraphs: [
-      "[Pierwszy akapit — kim jesteś, skąd pochodzi Twoja pasja do fotografii, jaki styl reprezentujesz.]",
-      "[Drugi akapit — co sprawia, że sesje z Tobą są wyjątkowe? Jak dbasz o komfort klientek/klientów?]"
+      "Jestem fotografką, która wykonuje profesjonalne zdjęcia na terenie Szczecina.",
+      "Specjalizuję się w indywidualnych sesjach wizerunkowych i rodzinnych.",
+      "Bez względu na rodzaj zdjęć i ich przeznaczenie, stawiam na niebanalne i kreatywne rozwiązania, by efekt każdej sesji zdjęciowej był nie tylko na najwyższym poziomie, ale także zachwycił i pozostawił w pamięci na długo. Każdą sesję traktuję indywidualnie, słucham potrzeb i dbam o to, żeby efekt końcowy był czymś, do czego będziecie wracać z uśmiechem.",
     ],
-    name: "Wanessa Kistela"
+    // name: "Wanessa Kistela"
   },
   portfolio: {
     tag:      "Portfolio",
-    heading:  "[Nagłówek galerii]",
-    sub:      "[Krótki podtytuł zachęcający do przejrzenia prac]",
+    heading:  "Chwile, które zostają na zawsze",
+    sub:      "Każda sesja to osobna historia. Oto kilka z nich.",
     photos: [
-      { img: "portfolio/01.jpg", alt: "Sesja 1" },
-      { img: "portfolio/02.jpg", alt: "Sesja 2" },
-      { img: "portfolio/03.jpg", alt: "Sesja 3" },
-      { img: "portfolio/04.jpg", alt: "Sesja 4" },
-      { img: "portfolio/05.jpg", alt: "Sesja 5" },
-      { img: "portfolio/06.jpg", alt: "Sesja 6" }
+    //   { img: "portfolio/065A0652-2.jpg", alt: "Sesja 1" },
+    //   { img: "portfolio/065A0900.jpg", alt: "Sesja 2" },
+      { img: "portfolio/065A1207-2.jpg", alt: "Sesja 3" },
+    //   { img: "portfolio/065A1313.jpg", alt: "Sesja 4" },
+      { img: "portfolio/065A1508.jpg", alt: "Sesja 5" },
+    //   { img: "portfolio/065A1592-2.jpg", alt: "Sesja 6" },
+    //   { img: "portfolio/065A1678-2.jpg", alt: "Sesja 7" },
+      { img: "portfolio/065A1775.jpg", alt: "Sesja 8" },
+    //   { img: "portfolio/065A1909.jpg", alt: "Sesja 9" },
+      { img: "portfolio/065A1952.jpg", alt: "Sesja 10" },
+    //   { img: "portfolio/065A2591.jpg", alt: "Sesja 11" },
+      { img: "portfolio/065A3196.jpg", alt: "Sesja 12" },
+    //   { img: "portfolio/065A3264.jpg", alt: "Sesja 13" },
+    //   { img: "portfolio/065A3320.jpg", alt: "Sesja 14" },
+      { img: "portfolio/065A3482.jpg", alt: "Sesja 15" },
+      { img: "portfolio/065A4632-2.jpg", alt: "Sesja 16" },
+      { img: "portfolio/065A5517.jpg", alt: "Sesja 17" },
+      { img: "portfolio/065A6129-2.jpg", alt: "Sesja 18" }
     ]
   },
-  offer: {
-    tag:     "Oferta",
-    heading: "[Nagłówek sekcji oferty]",
-    sub:     "[Jedno zdanie opisujące dostępne pakiety lub rodzaje sesji]",
-    cards: [
-      { icon: "🌸", title: "[Rodzaj sesji 1]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" },
-      { icon: "✨", title: "[Rodzaj sesji 2]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" },
-      { icon: "🌿", title: "[Rodzaj sesji 3]", desc: "[Opis — czas trwania, nastrój, co otrzymuje klient po sesji. Dwa, trzy zdania.]" }
+  opinions: {
+    tag:     "Opinie",
+    heading: "Opinie zadowolonych klientów",
+    items: [
+      {
+        img:     "opinions/065A3196.jpg",
+        name:    "Paulina",
+        session: "Sesja wizerunkowa",
+        quote:   "Bardzo długo szukałam fotografa takiego jak Wanessa. Nie boi się próbować nowych rzeczy, jest bardzo otwarta i cudownie ciepła osobowością. Wyniki przeszły moje oczekiwania. To była przyjemność, naprawdę podbiła moje serce wspaniałą pracą."
+      },
+      {
+        img:     "opinions/065A3482.jpg",
+        name:    "Katarzyna",
+        session: "Sesja biznesowa",
+        quote:   "Profesjonalizm na każdym kroku. Wanessa potrafiła mnie rozluźnić i sprawić, że czułam się swobodnie przed obiektywem. Zdjęcia do portfolio wyglądają fantastycznie — dostałam mnóstwo komplementów od klientów i współpracowników."
+      },
+      {
+        img:     "opinions/065A4632-2.jpg",
+        name:    "Marta & Tomasz",
+        session: "Sesja rodzinna",
+        quote:   "Każde zdjęcie opowiada historię — pełne emocji, naturalności i piękna. Wanessa doskonale wyczuwa chwilę i potrafi uchwycić to, co najważniejsze. To wspomnienia, do których będziemy wracać przez całe życie."
+      }
     ]
   },
   contact: {
-    tag:     "Kontakt",
-    heading: "[Nagłówek sekcji kontaktowej]",
-    sub:     "[Zachęcające zdanie — zaproszenie do kontaktu, np. 'Napisz do mnie i razem stworzymy coś pięknego.']",
-    email:   { label: "E-mail",     value: "wanessa@example.com" },
-    phone:   { label: "Telefon",    value: "+48 000 000 000" },
-    insta:   { label: "Instagram",  handle: "@wanessa.kistela", href: "https://instagram.com/wanessa.kistela" }
+    tag:      "Kontakt",
+    heading:  "Każda sesja zaczyna się od rozmowy i kawy.",
+    sub:      "Napisz do mnie i razem stworzymy coś pięknego.",
+    location: { label: "Gdzie mnie znajdziesz?", value: "Szczecin" },
+    phone:    { label: "Numer kontaktowy",        value: "880 150 066" },
+    email:    { label: "Adres email",             value: "wanessa.kistela1@gmail.com" },
+    insta:    { label: "Instagram",               handle: "wanessa.kistela", href: "https://instagram.com/wanessa.kistela" }
   },
-  footer: "[Twoja stopka, np.: © 2025 Wanessa Kistela — wszelkie prawa zastrzeżone]"
+  footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 </script>
 <!-- ═════════════════════════════════════════════════════════ -->
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#hero"><img src="logo/logo.png" alt="Wanessa Kistela"></a>
-  <ul>
+  <a class="logo" href="#hero"><img src="https://images.pexels.com/photos/30818585/pexels-photo-30818585/free-photo-of-bukiet-z-zywych-gerber-i-tulipanow.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Wanessa Kistela"></a>
+  <ul id="nav-links">
     <li><a href="#o-mnie">O mnie</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#oferta">Oferta</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="#opinie">Opinie</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <a class="nav-cta" href="#kontakt">Zarezerwuj sesję</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-nav-close" id="mobile-nav-close">&#10005;</button>
+  <ul>
+    <li><a href="#o-mnie">O mnie</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="#opinie">Opinie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="mobile-nav-cta">Zarezerwuj sesję</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -352,10 +513,10 @@ const CONTENT = {
 
 <!-- ABOUT -->
 <section class="about" id="o-mnie">
-  <div class="about-img">
-    <img src="photo_of_me/me.jpg" alt="Wanessa Kistela — fotograf">
+  <div class="about-img reveal">
+    <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela — fotograf">
   </div>
-  <div class="about-text">
+  <div class="about-text reveal delay-1">
     <p class="section-tag" id="aTag"></p>
     <h2 id="aHead"></h2>
     <div id="aPara"></div>
@@ -365,7 +526,7 @@ const CONTENT = {
 
 <!-- PORTFOLIO -->
 <section class="portfolio" id="portfolio">
-  <div class="section-header">
+  <div class="section-header reveal">
     <p class="section-tag" id="pTag"></p>
     <h2 id="pHead"></h2>
     <p id="pSub"></p>
@@ -373,27 +534,38 @@ const CONTENT = {
   <div class="portfolio-grid" id="pGrid"></div>
 </section>
 
-<!-- OFFER -->
-<section class="offer" id="oferta">
-  <div class="section-header">
-    <p class="section-tag" id="oTag"></p>
-    <h2 id="oHead"></h2>
-    <p id="oSub"></p>
+<!-- OPINIONS -->
+<section class="opinions" id="opinie">
+  <div class="section-header reveal">
+    <p class="section-tag" id="opTag"></p>
+    <h2 id="opHead"></h2>
   </div>
-  <div class="offer-cards" id="oCards"></div>
+  <div class="opinions-inner reveal delay-1">
+    <div class="opinions-viewport">
+      <div class="opinions-track" id="opTrack"></div>
+    </div>
+  </div>
+  <div class="opinions-controls reveal delay-2">
+    <button class="op-arrow" id="opPrev">&#8592;</button>
+    <div class="op-dots" id="opDots"></div>
+    <button class="op-arrow" id="opNext">&#8594;</button>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="kontakt">
-  <div class="contact-text">
+  <div class="contact-left reveal">
     <p class="section-tag" id="cTag"></p>
     <h2 id="cHead"></h2>
-    <p id="cSub"></p>
+    <p id="cSub" style="color:var(--muted);line-height:1.8;font-size:.97rem;margin-bottom:2.5rem;"></p>
+    <div class="contact-items" id="cDet"></div>
   </div>
-  <div class="contact-details" id="cDet"></div>
+  <div class="contact-photo reveal delay-1">
+    <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela">
+  </div>
 </section>
 
-<footer id="foot"></footer>
+<footer id="foot" class="reveal"></footer>
 
 <script>
 const C = CONTENT;
@@ -402,11 +574,11 @@ const C = CONTENT;
 const track = document.getElementById('track');
 const dotsEl = document.getElementById('dots');
 C.hero.slides.forEach((s,i) => {
-  track.innerHTML += `<div class="carousel-slide"><img src="${s.img}" alt="${s.alt}"><div class="slide-overlay"></div></div>`;
+  track.innerHTML += `<div class="carousel-slide"><img src="${s.img}" alt="${s.alt}" style="object-position:${s.objectPosition||'center center'}"><div class="slide-overlay"></div></div>`;
   dotsEl.innerHTML += `<div class="dot${i===0?' active':''}" data-i="${i}"></div>`;
 });
-document.getElementById('hHero').textContent = C.hero.heading;
-document.getElementById('hSub').textContent  = C.hero.subheading;
+document.getElementById('hHero').innerHTML = C.hero.heading;
+document.getElementById('hSub').innerHTML  = C.hero.subheading;
 document.getElementById('hCta').textContent  = C.hero.ctaLabel;
 
 let cur=0;
@@ -420,7 +592,7 @@ function goTo(x){
 document.getElementById('prev').onclick=()=>goTo(cur-1);
 document.getElementById('next').onclick=()=>goTo(cur+1);
 allDots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
-setInterval(()=>goTo(cur+1),5000);
+setInterval(()=>goTo(cur+1),3000);
 
 /* ── ABOUT ── */
 document.getElementById('aTag').textContent=C.about.tag;
@@ -434,14 +606,38 @@ document.getElementById('pTag').textContent=C.portfolio.tag;
 document.getElementById('pHead').textContent=C.portfolio.heading;
 document.getElementById('pSub').textContent=C.portfolio.sub;
 const pg=document.getElementById('pGrid');
-C.portfolio.photos.forEach(p=>pg.innerHTML+=`<div class="p-item"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`);
+C.portfolio.photos.forEach((p,i)=>{
+  const d=['','delay-1','delay-2'][i%3];
+  pg.innerHTML+=`<div class="p-item reveal ${d}"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`;
+});
 
-/* ── OFFER ── */
-document.getElementById('oTag').textContent=C.offer.tag;
-document.getElementById('oHead').textContent=C.offer.heading;
-document.getElementById('oSub').textContent=C.offer.sub;
-const oc=document.getElementById('oCards');
-C.offer.cards.forEach(c=>oc.innerHTML+=`<div class="offer-card"><div class="offer-icon">${c.icon}</div><h3>${c.title}</h3><p>${c.desc}</p></div>`);
+/* ── OPINIONS ── */
+document.getElementById('opTag').textContent=C.opinions.tag;
+document.getElementById('opHead').textContent=C.opinions.heading;
+const opTrack=document.getElementById('opTrack');
+const opDotsEl=document.getElementById('opDots');
+C.opinions.items.forEach((o,i)=>{
+  opTrack.innerHTML+=`<div class="opinion-slide">
+    <div class="opinion-photo"><img src="${o.img}" alt="${o.name}"></div>
+    <div class="opinion-body">
+      <p class="opinion-name">${o.name}</p>
+      <p class="opinion-session">${o.session}</p>
+      <p class="opinion-quote">${o.quote}</p>
+    </div>
+  </div>`;
+  opDotsEl.innerHTML+=`<button class="op-dot${i===0?' active':''}" data-i="${i}"></button>`;
+});
+let opCur=0;
+const opN=C.opinions.items.length;
+const opDotBtns=document.querySelectorAll('.op-dot');
+function opGoTo(x){
+  opCur=(x+opN)%opN;
+  opTrack.style.transform=`translateX(-${opCur*100}%)`;
+  opDotBtns.forEach((d,i)=>d.classList.toggle('active',i===opCur));
+}
+document.getElementById('opPrev').onclick=()=>opGoTo(opCur-1);
+document.getElementById('opNext').onclick=()=>opGoTo(opCur+1);
+opDotBtns.forEach(d=>d.addEventListener('click',()=>opGoTo(+d.dataset.i)));
 
 /* ── CONTACT ── */
 document.getElementById('cTag').textContent=C.contact.tag;
@@ -449,26 +645,75 @@ document.getElementById('cHead').textContent=C.contact.heading;
 document.getElementById('cSub').textContent=C.contact.sub;
 document.getElementById('cDet').innerHTML=`
   <div class="c-item">
-    <div class="c-icon email">✉️</div>
-    <div><p class="c-label">${C.contact.email.label}</p><a class="c-value" href="mailto:${C.contact.email.value}">${C.contact.email.value}</a></div>
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.location.label}</p>
+      <p class="c-value">${C.contact.location.value}</p>
+    </div>
   </div>
   <div class="c-item">
-    <div class="c-icon phone">📞</div>
-    <div><p class="c-label">${C.contact.phone.label}</p><p class="c-value">${C.contact.phone.value}</p></div>
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.phone.label}</p>
+      <p class="c-value">${C.contact.phone.value}</p>
+    </div>
   </div>
   <div class="c-item">
-    <div class="c-icon insta">📸</div>
-    <div><p class="c-label">${C.contact.insta.label}</p><a class="c-value" href="${C.contact.insta.href}" target="_blank">${C.contact.insta.handle}</a></div>
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.email.label}</p>
+      <a class="c-value" href="mailto:${C.contact.email.value}">${C.contact.email.value}</a>
+    </div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.insta.label}</p>
+      <a class="c-value" href="${C.contact.insta.href}" target="_blank">${C.contact.insta.handle}</a>
+    </div>
   </div>`;
 
 /* ── FOOTER ── */
 document.getElementById('foot').textContent=C.footer;
+
+/* ── MOBILE NAV ── */
+const mobileNav = document.getElementById('mobile-nav');
+document.getElementById('nav-burger').onclick = () => mobileNav.classList.add('open');
+document.getElementById('mobile-nav-close').onclick = () => mobileNav.classList.remove('open');
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
 /* ── NAV SHADOW ON SCROLL ── */
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').style.boxShadow=
     window.scrollY>20?'0 2px 24px rgba(74,30,107,.09)':'none';
 });
+
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('v');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>

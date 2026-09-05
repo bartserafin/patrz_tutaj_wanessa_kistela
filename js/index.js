@@ -8,7 +8,7 @@ const CONTENT = {
     ],
     heading:    "Fotograf Szczecin",
     subheading: "Szukasz doświadczonego fotografa na terenie Szczecina i okolic?<br><b>Świetnie trafiłaś!</b>",
-    ctaLabel:   "Zarezerwuj sesję"
+    ctaLabel:   "Zapytaj o sesję"
   },
   about: {
     tag:      "O mnie",

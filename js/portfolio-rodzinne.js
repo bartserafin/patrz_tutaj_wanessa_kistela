@@ -7,7 +7,7 @@ const CONTENT = {
     // Dodaj zdjęcia po umieszczeniu ich w portfolio/rodzinne/
     // np. "portfolio/rodzinne/nazwa-zdjecia.jpg"
   ],
-  footer: "© 2025 Wanessa Kistela — wszelkie prawa zastrzeżone"
+  footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
@@ -17,7 +17,7 @@ document.getElementById('pBack').textContent = C.back;
 document.getElementById('pTag').textContent  = C.tag;
 document.getElementById('pHead').textContent = C.heading;
 document.getElementById('pSub').textContent  = C.sub;
-document.getElementById('foot').textContent  = C.footer;
+document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.footer}</a>`;
 
 /* ── PHOTO GRID ── */
 const grid = document.getElementById('grid');

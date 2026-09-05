@@ -204,7 +204,7 @@ document.getElementById('cDet').innerHTML=`
   </div>`;
 
 /* ── FOOTER ── */
-document.getElementById('foot').textContent=C.footer;
+document.getElementById('foot').innerHTML=`<a href="regulamin.html">${C.footer}</a>`;
 
 /* ── MOBILE NAV ── */
 const mobileNav = document.getElementById('mobile-nav');

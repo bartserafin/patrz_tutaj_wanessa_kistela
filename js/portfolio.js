@@ -8,7 +8,7 @@ const CONTENT = {
     { title: "Artystyczne", cover: "portfolio/artystyczne/artystyczne-cover.jpg", href: "portfolio-artystyczne.html" },
     { title: "Rodzinne",    cover: "portfolio/rodzinne/rodzinne-cover.jpg",    href: "portfolio-rodzinne.html" }
   ],
-  footer: "© 2025 Wanessa Kistela — wszelkie prawa zastrzeżone"
+  footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
@@ -17,7 +17,7 @@ const C = CONTENT;
 document.getElementById('pTag').textContent  = C.tag;
 document.getElementById('pHead').textContent = C.heading;
 document.getElementById('pSub').textContent  = C.sub;
-document.getElementById('foot').textContent  = C.footer;
+document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.footer}</a>`;
 
 /* ── CATEGORY TILES ── */
 const grid = document.getElementById('grid');

@@ -31,7 +31,7 @@ document.getElementById('pBack').textContent = C.back;
 document.getElementById('pTag').textContent  = C.tag;
 document.getElementById('pHead').textContent = C.heading;
 document.getElementById('pSub').textContent  = C.sub;
-document.getElementById('foot').textContent  = C.footer;
+document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.footer}</a>`;
 
 /* ── FAQ ACCORDION ── */
 const faqList = document.getElementById('faqList');

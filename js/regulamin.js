@@ -3,8 +3,6 @@ const CONTENT = {
   heading: "Regulamin",
   sub:     "Zasady rezerwacji, realizacji i dostarczenia zdjęć obowiązujące podczas współpracy.",
   back:    "← Wróć do strony głównej",
-  // Treść poniżej jest przykładowa (robocza) — podmień poszczególne punkty
-  // na rzeczywiste zasady obowiązujące w Twojej działalności przed publikacją.
   sections: [
     { title: "1. Rezerwacja terminu",
       paragraphs: [
@@ -16,25 +14,20 @@ const CONTENT = {
         "Zmiana terminu jest możliwa najpóźniej 3 dni przed planowaną sesją. W przypadku zdarzeń losowych lub brzydkiej pogody (przy sesjach plenerowych) ustalamy nowy, dogodny termin.",
         "W przypadku odwołania sesji przez Klienta z przyczyn leżących po Jego stronie, zadatek nie podlega zwrotowi."
       ] },
-    { title: "3. Sposób i termin dostarczenia zdjęć",
+    { title: "3. Przebieg sesji",
       paragraphs: [
-        "Gotowe, wyretuszowane zdjęcia przekazywane są w formie elektronicznej, w wysokiej rozdzielczości, poprzez link do pobrania ważny przez 30 dni od udostępnienia.",
-        "Czas realizacji wynosi zwykle od 7 do 14 dni roboczych od dnia sesji, w zależności od jej rodzaju i liczby zdjęć do obróbki."
+        "Proszę o punktualne przybycie. Spóźnienie powyżej 15 minut może skrócić czas trwania sesji.",
+        "Ewentualny koszt wynajęcia studia fotograficznego lub dodatkowych biletów wstępu pokrywa Klient."
       ] },
-    { title: "4. Prawa autorskie i wykorzystanie zdjęć",
+    { title: "4. Odbiór zdjęć i obróbka",
       paragraphs: [
-        "Autorskie prawa majątkowe do wykonanych zdjęć przysługują fotografowi. Klient otrzymuje licencję na wykorzystanie zdjęć do celów prywatnych oraz publikację w mediach społecznościowych z zachowaniem oznaczenia autora.",
-        "Fotograf zastrzega sobie prawo do wykorzystania wybranych zdjęć z sesji w swoim portfolio oraz materiałach promocyjnych, chyba że Klient wyrazi sprzeciw przed sesją."
+        "Gotowe, obrobione zdjęcia otrzymasz w formie cyfrowej w ciągu <b>21 dni</b> licząc od dnia sesji.",
+        "Nie przekazuję surowych plików (RAW) ani nieobrobionych zdjęć."
       ] },
-    { title: "5. Zgoda na wizerunek",
+    { title: "5. Prawa autorskie i publikacja",
       paragraphs: [
-        "Uczestnictwo w sesji zdjęciowej jest jednoznaczne z wyrażeniem zgody na utrwalenie i przetwarzanie wizerunku w zakresie opisanym w niniejszym regulaminie.",
-        "W przypadku sesji z udziałem osób niepełnoletnich wymagana jest pisemna zgoda rodzica lub opiekuna prawnego."
-      ] },
-    { title: "6. Reklamacje",
-      paragraphs: [
-        "Ewentualne reklamacje dotyczące jakości usługi należy zgłaszać w formie pisemnej (e-mail) w terminie 7 dni od otrzymania gotowych zdjęć.",
-        "Reklamacje rozpatrywane są indywidualnie w terminie do 14 dni roboczych od daty zgłoszenia."
+        "Klient otrzymuje prawo do prywatnego użytku zdjęć (oraz publikacji na własnych profilach w mediach społecznościowych).",
+        "Zgoda na publikację Twojego wizerunku w moim portfolio (Instagram, strona www) jest dobrowolna. Zawsze najpierw pytam o zgodę!"
       ] }
   ],
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"

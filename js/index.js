@@ -14,9 +14,9 @@ const CONTENT = {
     tag:      "O mnie",
     heading:  "Wanessa Kistela",
     paragraphs: [
-      "Jestem fotografką, która wykonuje profesjonalne zdjęcia na terenie Szczecina.",
-      "Specjalizuję się w indywidualnych sesjach wizerunkowych i rodzinnych.",
-      "Bez względu na rodzaj zdjęć i ich przeznaczenie, stawiam na niebanalne i kreatywne rozwiązania, by efekt każdej sesji zdjęciowej był nie tylko na najwyższym poziomie, ale także zachwycił i pozostawił w pamięci na długo. Każdą sesję traktuję indywidualnie, słucham potrzeb i dbam o to, żeby efekt końcowy był czymś, do czego będziecie wracać z uśmiechem.",
+      "Cześć, mam na imię <b>Wanessa</b> i jestem profesjonalnym fotografem. Specjalizuję się w fotografii <b>rodzinnej i wizerunkowej</b>. Realizuję zlecenia w Szczecinie, województwie zachodniopomorskim i na terenie całej Polski.",
+      "Jeśli na myśl o stanięciu przed obiektywem czujesz lekki stres - mam dla Ciebie dobrą wiadomość: <b>ze mną nie musisz umieć pozować</b>.",
+      "Najbardziej cenię sobie luźną, <b>swobodną atmosferę</b>. Moje sesje przypominają bardziej spotkanie z koleżanką niż sztywny plan zdjęciowy. Dbam o to, aby od pierwszych minut zeszło z Ciebie całe napięcie. Bez wymuszonych uśmiechów, bez sztucznych póz i bez presji czasu.",
     ],
     // name: "Wanessa Kistela"
   },
@@ -76,7 +76,10 @@ const CONTENT = {
     location: { label: "Gdzie mnie znajdziesz?", value: "Szczecin" },
     phone:    { label: "Numer kontaktowy",        value: "880 150 066" },
     email:    { label: "Adres email",             value: "wanessa.kistela1@gmail.com" },
-    insta:    { label: "Instagram",               handle: "wanessa.kistela", href: "https://instagram.com/wanessa.kistela" }
+    insta:    { label: "Instagram",               handle: "wanessa.kistela", href: "https://instagram.com/wanessa.kistela" },
+    fb:       { label: "Facebook",                handle: "Wanessa Kistela", href: "https://www.facebook.com/share/1F47gd4sz9/?mibextid=wwXIfr" },
+    tiktok:   { label: "TikTok",                  handle: "@wanessa.kistela", href: "https://www.tiktok.com/@wanessa.kistela?_r=1&_t=ZN-99RhrrdCKEo" },
+    youtube:  { label: "YouTube",                 handle: "@wanessa7714",     href: "https://youtube.com/@wanessa7714?si=_mjtmiZ2K6JQTGPv" }
   },
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
@@ -199,6 +202,39 @@ document.getElementById('cDet').innerHTML=`
     <div class="c-item-text">
       <p class="c-label">${C.contact.insta.label}</p>
       <a class="c-value" href="${C.contact.insta.href}" target="_blank">${C.contact.insta.handle}</a>
+    </div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 8h2V5h-2c-2.21 0-4 1.79-4 4v2H9v3h2v7h3v-7h2.5l.5-3H14v-2c0-.55.45-1 1-1z" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.fb.label}</p>
+      <a class="c-value" href="${C.contact.fb.href}" target="_blank">${C.contact.fb.handle}</a>
+    </div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16.5 3c.4 1.9 1.6 3.3 3.5 3.7v2.9c-1.3 0-2.5-.4-3.5-1.1v6.4c0 3-2.4 5.4-5.4 5.4S5.7 17.9 5.7 14.9c0-3 2.4-5.4 5.4-5.4.3 0 .6 0 .9.1v2.9c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1.1-2.5 2.5s1.1 2.6 2.5 2.6 2.6-1.1 2.6-2.6V3h3.8z" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.tiktok.label}</p>
+      <a class="c-value" href="${C.contact.tiktok.href}" target="_blank">${C.contact.tiktok.handle}</a>
+    </div>
+  </div>
+  <div class="c-item">
+    <div class="c-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="4" ry="4"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="c-item-text">
+      <p class="c-label">${C.contact.youtube.label}</p>
+      <a class="c-value" href="${C.contact.youtube.href}" target="_blank">${C.contact.youtube.handle}</a>
     </div>
   </div>`;
 

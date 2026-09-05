@@ -3,23 +3,23 @@ const CONTENT = {
   heading: "Często zadawane pytania",
   sub:     "Odpowiedzi na najczęstsze pytania dotyczące rezerwacji, cennika i przebiegu sesji zdjęciowej.",
   back:    "← Wróć do strony głównej",
-  // Treść poniżej jest przykładowa (robocza) — podmień pytania i odpowiedzi
-  // na rzeczywiste informacje przed publikacją.
   faqs: [
-    { q: "Jak mogę zarezerwować sesję zdjęciową?",
-      a: "Najprościej skontaktuj się ze mną przez formularz kontaktowy, e-mail lub telefon podane w sekcji Kontakt. Ustalimy termin, miejsce oraz szczegóły sesji dopasowane do Twoich potrzeb." },
-    { q: "Ile kosztuje sesja zdjęciowa?",
-      a: "Cena zależy od rodzaju sesji, czasu jej trwania oraz liczby przekazywanych zdjęć. Napisz do mnie z krótkim opisem tego, czego szukasz — odpowiem z indywidualną wyceną." },
-    { q: "Jak długo czekam na gotowe zdjęcia?",
-      a: "Czas realizacji zależy od rodzaju sesji i zwykle wynosi od 7 do 14 dni roboczych. Przy większych projektach dokładny termin ustalamy przed sesją." },
-    { q: "Gdzie odbywają się sesje zdjęciowe?",
-      a: "Pracuję zarówno w plenerze, jak i w wybranych wnętrzach czy studiu, w zależności od charakteru sesji. Chętnie zaproponuję lokalizację lub dostosuję się do miejsca ważnego dla Ciebie." },
-    { q: "Co się dzieje, jeśli muszę odwołać lub przełożyć sesję?",
-      a: "Plany czasem się zmieniają — wystarczy, że poinformujesz mnie z odpowiednim wyprzedzeniem, a wspólnie ustalimy nowy termin bez dodatkowych opłat." },
-    { q: "Ile zdjęć otrzymam po sesji i co jest w nią wliczone?",
-      a: "Liczba zdjęć zależy od wybranego pakietu i długości sesji — szczegóły ustalamy indywidualnie przed rezerwacją. W cenę wliczona jest sesja, obróbka wybranych ujęć oraz przekazanie zdjęć w wysokiej rozdzielczości." },
-    { q: "Czy mogę zamówić wydruki lub album ze zdjęciami?",
-      a: "Tak, na życzenie przygotowuję również wydruki oraz albumy fotograficzne. Szczegóły i wycenę omawiamy indywidualnie po sesji." }
+    { q: "Nie umiem pozować i stresuję się przed aparatem. Czy dam radę?",
+      a: "Zdecydowanie tak! Większość osób, które fotografuję, mówi mi na początku dokładnie to samo. Moje sesje nie polegają na sztywnym pozowaniu. Zamiast tego stawiam na luźną atmosferę, rozmowę i naturalność. Poprowadzę Cię krok po kroku, podpowiem co zrobić z rękami i zadbam o to, aby stres minął już po pierwszych kilku minutach." },
+    { q: "Jak mam się ubrać na sesję?",
+      a: "Najważniejsze, żebyś czuł/a się w swoim ubraniu wygodnie i swobodnie. Najlepiej sprawdzają się kolory neutralne (beże, biele, brązy, szarości, pastele) oraz ubrania bez dużych, pstrokatych logo. Po rezerwacji sesji chętnie pomogę Ci dobrać odpowiednie stylizacje i podrzucę kilkanaście sprawdzonych inspiracji." },
+    { q: "Gdzie odbywają się sesje?",
+      a: "To zależy od Twoich potrzeb i pomysłu! Robię zdjęcia w plenerze (parki, miejskie uliczki, klimatyczne miejsca w Szczecinie i okolicach), w wynajętym studio fotograficznym, w kawiarniach lub w Twoim domowym wydaniu/miejscu pracy (szczególnie przy sesjach wizerunkowych)." },
+    { q: "Ile trwa sesja zdjęciowa?",
+      a: "Standardowa sesja trwa zazwyczaj od 1 do 1,5 godziny. To idealny czas, aby na spokojnie zrobić różnorodne ujęcia, zmienić stylizację i porozmawiać." },
+    { q: "Kiedy i w jakiej formie otrzymam gotowe zdjęcia?",
+      a: "Gotowy pakiet obrobionych zdjęć otrzymasz do 21 dni od momentu wyboru ujęć. Zdjęcia przekazuję w formie cyfrowej przez wygodną galerię online chronioną hasłem, z której łatwo pobierzesz je na telefon lub komputer w pełnej rozdzielczości." },
+    { q: "Czy dostanę nieobrobione zdjęcia (pliki RAW)?",
+      a: "Nie oddaję surowych plików RAW. Surowy plik to tylko połowa wykonanej przeze mnie pracy – autorska obróbka, światło i spójna kolorystyka stanowią kluczową część mojego stylu, za który wybierasz moje portfolio." },
+    { q: "Co jeśli pogoda podczas sesji plenerowej nie dopisze?",
+      a: "Śledzę prognozy na bieżąco. Jeśli w dniu sesji ma ulewnie padać lub aura będzie bardzo niesprzyjająca, po prostu bezpłatnie przekładamy spotkanie na inny, dogodny dla Ciebie termin." },
+    { q: "Jak mogę zarezerwować termin?",
+      a: "Wystarczy, że napiszesz do mnie wiadomość przez formularz kontaktowy, e-mail lub na Instagramie. Omówimy Twój pomysł, ustalimy dogodny termin i dogramy wszystkie szczegóły!" }
   ],
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };

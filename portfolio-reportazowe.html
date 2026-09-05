@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio — Wanessa Kistela Fotografia</title>
+  <title>Reportażowe — Wanessa Kistela Fotografia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/portfolio-reportazowe.css">
 </head>
 <body>
 
@@ -42,6 +42,7 @@
 <!-- PAGE HEADER -->
 <header class="page-header reveal">
   <div class="page-header-inner">
+    <a class="back-link" id="pBack" href="portfolio.html"></a>
     <span class="section-tag" id="pTag"></span>
     <h1 id="pHead"></h1>
     <p class="sub" id="pSub"></p>
@@ -53,9 +54,16 @@
   <div class="masonry" id="grid"></div>
 </section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">&#10005;</button>
+  <button class="lightbox-prev" id="lb-prev">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lightbox-next" id="lb-next">&#8594;</button>
+</div>
 
 <footer id="foot"></footer>
 
-<script src="js/portfolio.js"></script>
+<script src="js/portfolio-reportazowe.js"></script>
 </body>
 </html>

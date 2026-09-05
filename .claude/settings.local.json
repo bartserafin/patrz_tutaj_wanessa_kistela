@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\barts\\\\Desktop\\\\repos\\\\patrz_tutaj_wanessa_kistela\" -Recurse)",
+      "Bash(Select-Object -Property FullName)"
+    ]
+  }
+}

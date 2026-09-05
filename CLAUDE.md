@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-A static, no-build, no-dependency photography portfolio site (Polish-language) for photographer Wanessa Kistela. Two pages: a home page (`index.html`) and a full portfolio gallery (`portfolio.html`). There is no package.json, bundler, linter, or test suite — this is plain HTML/CSS/JS served directly.
+A static, no-build, no-dependency photography portfolio site (Polish-language) for photographer Wanessa Kistela. Pages: a home page (`index.html`), a portfolio hub (`portfolio.html`), and four category subpages (`portfolio-biznesowe.html`, `portfolio-reportazowe.html`, `portfolio-artystyczne.html`, `portfolio-rodzinne.html`). There is no package.json, bundler, linter, or test suite — this is plain HTML/CSS/JS served directly.
 
 ## Running / previewing
 
@@ -31,24 +31,40 @@ Each page follows a strict **content/logic split**:
 
 **This means all copy edits (text, headings, image lists, contact info) should be made in the `CONTENT` object inside the relevant JS file — not in the HTML.** The HTML files themselves carry a comment reminding of this.
 
-Each page has its own paired CSS file (`css/index.css`, `css/portfolio.css`) — there is no shared/global stylesheet. Both define an identical `:root` color palette (purple/orange/yellow brand colors) redundantly; keep them in sync if changing the palette.
+Each page has its own paired CSS file — there is no shared/global stylesheet. All CSS files define an identical `:root` color palette (purple/orange/yellow brand colors) redundantly; keep them in sync if changing the palette.
 
-### index.html / js/index.js
+### index.html / js/index.js / css/index.css
 
 Renders, in order: nav + mobile nav overlay, a hero image carousel (auto-advancing every 3s, with prev/next arrows and dots), an "about" section, a portfolio preview grid (a curated subset of photos — note many entries in `CONTENT.portfolio.photos` are commented out to hand-pick which images show here), a testimonial/"opinions" carousel, a contact section, and a footer.
 
-### portfolio.html / js/portfolio.js
+### portfolio.html / js/portfolio.js / css/portfolio.css
 
-Renders the full photo grid (all images in `CONTENT.photos`, uses `portfolio-grid` from index for the curated preview) as a masonry-style gallery with lazy-loaded images, plus a click-to-open lightbox (keyboard arrow keys + Escape supported).
+The portfolio **hub** page. Renders a page header ("Chwile, które zostają na zawsze") and four category tiles in a 2×2 CSS grid. Each tile is a full-bleed cover photo with a purple gradient overlay and a category title, linking to its category subpage. **No lightbox on this page.**
 
-Both pages independently implement: mobile nav burger/overlay toggling, a nav drop-shadow on scroll, and scroll-reveal animations via `IntersectionObserver` on elements with the `.reveal` class (staggered via `.delay-1`/`.delay-2` classes or an inline `transitionDelay`).
+`CONTENT.categories` in `js/portfolio.js` defines the four tiles — each entry has `title`, `cover` (path to the cover image), and `href` (link to the subpage). To change a cover photo or title, edit this array.
+
+### Category subpages
+
+Four pages, one per category:
+
+| Page | JS | CSS |
+|---|---|---|
+| `portfolio-biznesowe.html` | `js/portfolio-biznesowe.js` | `css/portfolio-biznesowe.css` |
+| `portfolio-reportazowe.html` | `js/portfolio-reportazowe.js` | `css/portfolio-reportazowe.css` |
+| `portfolio-artystyczne.html` | `js/portfolio-artystyczne.js` | `css/portfolio-artystyczne.css` |
+| `portfolio-rodzinne.html` | `js/portfolio-rodzinne.js` | `css/portfolio-rodzinne.css` |
+
+Each subpage renders: a "← Wróć do Portfolio" back-link, a page header, a masonry photo grid, and a click-to-open lightbox (keyboard arrow keys + Escape supported). Logic is identical across all four — mobile nav, nav shadow on scroll, scroll-reveal, lightbox.
+
+To add photos to a category: drop images into the matching subfolder (`portfolio/biznesowe/`, `portfolio/reportazowe/`, `portfolio/artystyczne/`, `portfolio/rodzinne/`) and add their relative paths to the `photos: []` array in the corresponding JS file.
 
 ### Image assets
 
-Top-level folders hold source photos by purpose: `/logo`, `/carousel` (hero carousel), `/photo_of_me`, `/portfolio` (full gallery — also the source for the home page's curated preview), `/opinions` (testimonial photos). Filenames are raw camera export names (e.g. `065A1592-2.jpg`) — when adding new photos, drop them in the appropriate folder and reference the relative path from the corresponding `CONTENT` object.
+- `/logo`, `/carousel` (hero carousel), `/photo_of_me`, `/opinions` — used by the home page
+- `/portfolio/biznesowe/`, `/portfolio/reportazowe/`, `/portfolio/artystyczne/`, `/portfolio/rodzinne/` — category galleries; the cover photo for each hub tile is also stored here (named `[kategoria]-cover.jpg` by convention)
 
 ## Notes when editing
 
 - Keep the content/logic separation: don't hardcode text or image paths into the HTML files.
-- Both pages duplicate mobile-nav, nav-shadow-on-scroll, and scroll-reveal logic in their respective JS files rather than sharing a common script — if fixing a bug in one, check whether the same bug exists in the other file's copy.
+- All pages (index + portfolio hub + 4 category subpages) independently duplicate mobile-nav, nav-shadow-on-scroll, and scroll-reveal logic — if fixing a bug in one, check whether the same bug exists in the others.
 - Site language is Polish; keep new copy consistent with the existing tone/language.

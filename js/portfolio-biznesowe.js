@@ -6,6 +6,7 @@ const CONTENT = {
   photos: [
     // Dodaj zdjęcia po umieszczeniu ich w portfolio/biznesowe/
     // np. "portfolio/biznesowe/nazwa-zdjecia.jpg"
+    "portfolio/biznesowe/biznesowe-cover.jpg"
   ],
   footer: "© 2025 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };

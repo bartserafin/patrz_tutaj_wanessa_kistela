@@ -3,10 +3,10 @@ const CONTENT = {
   heading: "Chwile, które zostają na zawsze",
   sub:     "Każda sesja to osobna historia. Wybierz kategorię i odkryj moje prace.",
   categories: [
-    { title: "Biznesowe",   cover: "portfolio/biznesowe/cover.jpg",   href: "portfolio-biznesowe.html" },
-    { title: "Reportażowe", cover: "portfolio/reportazowe/cover.jpg", href: "portfolio-reportazowe.html" },
-    { title: "Artystyczne", cover: "portfolio/artystyczne/cover.jpg", href: "portfolio-artystyczne.html" },
-    { title: "Rodzinne",    cover: "portfolio/rodzinne/cover.jpg",    href: "portfolio-rodzinne.html" }
+    { title: "Biznesowe",   cover: "portfolio/biznesowe/biznesowe-cover.jpg",   href: "portfolio-biznesowe.html" },
+    { title: "Reportażowe", cover: "portfolio/reportazowe/reportazowe-cover.jpg", href: "portfolio-reportazowe.html" },
+    { title: "Artystyczne", cover: "portfolio/artystyczne/artystyczne-cover.jpg", href: "portfolio-artystyczne.html" },
+    { title: "Rodzinne",    cover: "portfolio/rodzinne/rodzinne-cover.jpg",    href: "portfolio-rodzinne.html" }
   ],
   footer: "© 2025 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };

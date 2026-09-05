@@ -58,7 +58,13 @@ Four pages, one per category:
 
 Each subpage renders: a "← Wróć do Portfolio" back-link, a page header, a masonry photo grid, and a click-to-open lightbox (keyboard arrow keys + Escape supported). Logic is identical across all four — mobile nav, nav shadow on scroll, scroll-reveal, lightbox.
 
-To add photos to a category: drop images into the matching subfolder (`portfolio/biznesowe/`, `portfolio/reportazowe/`, `portfolio/artystyczne/`, `portfolio/rodzinne/`) and add their relative paths to the `photos: []` array in the corresponding JS file.
+**Photo lists are generated, not hand-edited.** Each subpage's `CONTENT.photos` starts as an empty array and is filled at runtime by fetching `portfolio/<category>/manifest.json`. To add or remove photos: drop images into the matching subfolder (`portfolio/biznesowe/`, `portfolio/reportazowe/`, `portfolio/artystyczne/`, `portfolio/rodzinne/`), then run:
+
+```
+node scripts/generate-photo-manifests.js
+```
+
+This scans each `portfolio/<category>/` folder and rewrites its `manifest.json` (creating the folder if needed). Never edit `photos: []` in the JS files by hand — it's just a fallback used if the fetch fails. Because the grid loads via `fetch()`, viewing pages via `file://` won't show any photos — serve the directory locally (see "Running / previewing" above) or deploy to a real static host.
 
 ### faq.html / js/faq.js / css/faq.css
 

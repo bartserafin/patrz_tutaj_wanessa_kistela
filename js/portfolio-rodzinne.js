@@ -3,10 +3,10 @@ const CONTENT = {
   heading: "Chwile, które zostają na zawsze",
   sub:     "Sesje rodzinne pełne emocji i naturalności.",
   back:    "← Wróć do Portfolio",
-  photos: [
-    // Dodaj zdjęcia po umieszczeniu ich w portfolio/rodzinne/
-    // np. "portfolio/rodzinne/nazwa-zdjecia.jpg"
-  ],
+  // Lista zdjęć wczytywana dynamicznie z portfolio/rodzinne/manifest.json (patrz niżej).
+  // Aby dodać/usunąć zdjęcie: wrzuć/usuń plik w portfolio/rodzinne/ i uruchom
+  // `node scripts/generate-photo-manifests.js` — nie edytuj tej tablicy ręcznie.
+  photos: [],
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
@@ -21,14 +21,24 @@ document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.foo
 
 /* ── PHOTO GRID ── */
 const grid = document.getElementById('grid');
-C.photos.forEach((src, i) => {
-  const d = ['', 'delay-1', 'delay-2'][i % 3];
-  grid.innerHTML += `
-    <div class="tile reveal ${d}" data-i="${i}">
-      <img src="${src}" alt="Sesja ${i + 1}" loading="lazy">
-      <div class="tile-overlay"></div>
-    </div>`;
-});
+function renderGrid() {
+  C.photos.forEach((src, i) => {
+    const d = ['', 'delay-1', 'delay-2'][i % 3];
+    grid.innerHTML += `
+      <div class="tile reveal ${d}" data-i="${i}">
+        <img src="${src}" alt="Sesja ${i + 1}" loading="lazy">
+        <div class="tile-overlay"></div>
+      </div>`;
+  });
+  document.querySelectorAll('.tile').forEach(t =>
+    t.addEventListener('click', () => lbOpen(+t.dataset.i))
+  );
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}
+fetch('portfolio/rodzinne/manifest.json')
+  .then(r => r.json())
+  .then(data => { C.photos = data.photos; renderGrid(); })
+  .catch(() => renderGrid());
 
 /* ── LIGHTBOX ── */
 let lbIndex = 0;
@@ -50,9 +60,6 @@ function lbGo(dir) {
   lbImg.src = C.photos[lbIndex];
 }
 
-document.querySelectorAll('.tile').forEach(t =>
-  t.addEventListener('click', () => lbOpen(+t.dataset.i))
-);
 document.getElementById('lb-close').onclick = lbClose;
 document.getElementById('lb-prev').onclick  = () => lbGo(-1);
 document.getElementById('lb-next').onclick  = () => lbGo(1);

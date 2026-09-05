@@ -82,6 +82,14 @@
       width:100%;
     }
     .page-header-inner { max-width:800px; margin:0 auto; text-align:center; }
+    .back-link {
+      display:inline-block;
+      color:var(--orange); text-decoration:none;
+      font-size:.82rem; font-weight:600;
+      letter-spacing:.08em; text-transform:uppercase;
+      margin-bottom:1.2rem; transition:color .2s;
+    }
+    .back-link:hover { color:var(--purple-dark); }
     .section-tag {
       font-size:.72rem; font-weight:700;
       letter-spacing:.16em; text-transform:uppercase;
@@ -98,63 +106,61 @@
       color:var(--muted); font-size:1.05rem;
       font-weight:300; line-height:1.7; margin-bottom:1rem;
     }
-    .page-header .para {
-      color:var(--muted); font-size:.97rem; line-height:1.85;
-    }
 
-    /* ── CATEGORY TILES ── */
-    .grid-section { padding:3rem 4rem 5rem; background:var(--bg); }
-    #grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.2rem;
-      max-width:1200px;
-      margin:0 auto;
+    /* ── PHOTO GRID ── */
+    .grid-section { padding:4rem; background:var(--bg); }
+    .masonry {
+      columns:3;
+      column-gap:12px;
     }
-    .cat-tile {
+    .tile {
+      break-inside:avoid;
+      margin-bottom:12px;
       position:relative;
-      display:flex;
-      align-items:flex-end;
-      text-decoration:none;
-      border-radius:12px;
       overflow:hidden;
-      aspect-ratio:4 / 3;
-      background-size:cover;
-      background-position:center;
       cursor:pointer;
+      border-radius:8px;
     }
-    .cat-tile::before {
-      content:'';
-      position:absolute;
-      inset:0;
-      background-image:inherit;
-      background-size:cover;
-      background-position:inherit;
-      transition:transform 0.55s ease;
+    .tile img {
+      width:100%; display:block;
+      transition:transform .55s ease;
     }
-    .cat-tile:hover::before { transform:scale(1.06); }
-    .cat-tile-overlay {
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(74,30,107,.75) 0%, rgba(74,30,107,.1) 55%, transparent 100%);
-      transition:background 0.35s;
+    .tile:hover img { transform:scale(1.05); }
+    .tile-overlay {
+      position:absolute; inset:0;
+      background:rgba(74,30,107,0);
+      transition:background .3s;
+      display:flex; align-items:center; justify-content:center;
     }
-    .cat-tile:hover .cat-tile-overlay {
-      background:linear-gradient(to top, rgba(74,30,107,.88) 0%, rgba(74,30,107,.3) 60%, transparent 100%);
+    .tile:hover .tile-overlay { background:rgba(74,30,107,.22); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display:none; position:fixed; inset:0; z-index:500;
+      background:rgba(30,10,48,.92);
+      align-items:center; justify-content:center;
     }
-    .cat-tile-title {
-      position:relative;
-      z-index:1;
-      padding:1.6rem 2rem;
-      font-family:'Poppins',sans-serif;
-      font-size:clamp(1.3rem,2.2vw,2rem);
-      font-weight:700;
-      color:#fff;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-      transition:transform 0.3s ease;
+    .lightbox.open { display:flex; }
+    .lightbox img {
+      max-width:90vw; max-height:90vh;
+      object-fit:contain; border-radius:6px;
     }
-    .cat-tile:hover .cat-tile-title { transform:translateY(-6px); }
+    .lightbox-close {
+      position:absolute; top:1.5rem; right:2rem;
+      background:none; border:none; color:#fff;
+      font-size:2rem; cursor:pointer; line-height:1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+      color:#fff; width:48px; height:48px; border-radius:50%;
+      font-size:1.2rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    .lightbox-prev { left:1.5rem; }
+    .lightbox-next { right:1.5rem; }
+    .lightbox-prev:hover, .lightbox-next:hover { background:rgba(255,255,255,.25); }
 
     /* ── FOOTER ── */
     footer {
@@ -184,14 +190,10 @@
       .nav-burger { display:flex; }
       .page-header { padding:8rem 1.5rem 3rem; }
       .grid-section { padding:2.5rem 1.5rem; }
-      #grid { gap:0.9rem; }
-      .cat-tile-title { font-size:1.2rem; padding:1.2rem 1.4rem; }
-    }
-    @media(max-width:600px){
-      #grid { grid-template-columns:1fr; }
-      .cat-tile { aspect-ratio:3 / 2; }
+      .masonry { columns:2; }
     }
     @media(max-width:540px){
       .page-header h1 { font-size:2rem; }
+      .masonry { columns:1; }
       .grid-section { padding:2rem 1rem; }
     }

@@ -26,9 +26,7 @@
       transition:box-shadow .3s;
     }
     nav .logo img {
-      width:46px; height:46px; display:block;
-      border-radius:50%; object-fit:cover;
-      border:2px solid rgba(168,85,200,.2);
+      height:60px; width:auto; display:block;
     }
     nav ul { list-style:none; display:flex; gap:2.5rem; }
     nav ul a {
@@ -261,6 +259,14 @@
       padding:1.8rem; color:rgba(255,255,255,.28);
       font-size:.78rem; letter-spacing:.04em;
     }
+    footer a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,.28);
+      text-underline-offset: 2px;
+      transition: color .2s;
+    }
+    footer a:hover { color: var(--pink); text-decoration-color: var(--pink); }
 
     /* ── HAMBURGER ── */
     .nav-burger {

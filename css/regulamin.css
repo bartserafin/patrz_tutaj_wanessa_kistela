@@ -82,6 +82,14 @@
       width:100%;
     }
     .page-header-inner { max-width:800px; margin:0 auto; text-align:center; }
+    .back-link {
+      display:inline-block;
+      color:var(--orange); text-decoration:none;
+      font-size:.82rem; font-weight:600;
+      letter-spacing:.08em; text-transform:uppercase;
+      margin-bottom:1.2rem; transition:color .2s;
+    }
+    .back-link:hover { color:var(--purple-dark); }
     .section-tag {
       font-size:.72rem; font-weight:700;
       letter-spacing:.16em; text-transform:uppercase;
@@ -92,69 +100,31 @@
       font-family:'Poppins',sans-serif;
       font-size:clamp(1.6rem,2.8vw,2.4rem); font-weight:800;
       color:var(--purple-dark); line-height:1.1; margin-bottom:1rem;
-      white-space:nowrap;
+      white-space:normal;
     }
     .page-header .sub {
       color:var(--muted); font-size:1.05rem;
       font-weight:300; line-height:1.7; margin-bottom:1rem;
     }
-    .page-header .para {
-      color:var(--muted); font-size:.97rem; line-height:1.85;
-    }
 
-    /* ── CATEGORY TILES ── */
-    .grid-section { padding:3rem 4rem 5rem; background:var(--bg); }
-    #grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.2rem;
-      max-width:1200px;
-      margin:0 auto;
-    }
-    .cat-tile {
-      position:relative;
-      display:flex;
-      align-items:flex-end;
-      text-decoration:none;
+    /* ── REGULAMIN ── */
+    .regulamin-section { padding:4rem; background:var(--bg); }
+    .regulamin-list { max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:2rem; }
+    .regulamin-item {
+      background:#fff;
+      border:1px solid rgba(168,85,200,.15);
       border-radius:12px;
-      overflow:hidden;
-      aspect-ratio:4 / 3;
-      background-size:cover;
-      background-position:center;
-      cursor:pointer;
+      padding:1.6rem 1.8rem;
     }
-    .cat-tile::before {
-      content:'';
-      position:absolute;
-      inset:0;
-      background-image:inherit;
-      background-size:cover;
-      background-position:inherit;
-      transition:transform 0.55s ease;
+    .regulamin-item h2 {
+      font-family:'Poppins',sans-serif; font-size:1.05rem; font-weight:600;
+      color:var(--purple-dark); margin-bottom:.8rem;
     }
-    .cat-tile:hover::before { transform:scale(1.06); }
-    .cat-tile-overlay {
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(74,30,107,.75) 0%, rgba(74,30,107,.1) 55%, transparent 100%);
-      transition:background 0.35s;
+    .regulamin-item p {
+      color:var(--muted); font-size:.95rem; line-height:1.7; font-weight:300;
     }
-    .cat-tile:hover .cat-tile-overlay {
-      background:linear-gradient(to top, rgba(74,30,107,.88) 0%, rgba(74,30,107,.3) 60%, transparent 100%);
-    }
-    .cat-tile-title {
-      position:relative;
-      z-index:1;
-      padding:1.6rem 2rem;
-      font-family:'Poppins',sans-serif;
-      font-size:clamp(1.3rem,2.2vw,2rem);
-      font-weight:700;
-      color:#fff;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-      transition:transform 0.3s ease;
-    }
-    .cat-tile:hover .cat-tile-title { transform:translateY(-6px); }
+    .regulamin-item p + p { margin-top:.8rem; }
+    .regulamin-item p b { font-weight:700; color:var(--text); }
 
     /* ── FOOTER ── */
     footer {
@@ -183,15 +153,10 @@
       nav ul, .nav-cta { display:none; }
       .nav-burger { display:flex; }
       .page-header { padding:8rem 1.5rem 3rem; }
-      .grid-section { padding:2.5rem 1.5rem; }
-      #grid { gap:0.9rem; }
-      .cat-tile-title { font-size:1.2rem; padding:1.2rem 1.4rem; }
-    }
-    @media(max-width:600px){
-      #grid { grid-template-columns:1fr; }
-      .cat-tile { aspect-ratio:3 / 2; }
+      .regulamin-section { padding:2.5rem 1.5rem; }
     }
     @media(max-width:540px){
-      .page-header h1 { font-size:2rem; }
-      .grid-section { padding:2rem 1rem; }
+      .page-header h1 { font-size:1.7rem; }
+      .regulamin-section { padding:2rem 1rem; }
+      .regulamin-item { padding:1.3rem 1.4rem; }
     }

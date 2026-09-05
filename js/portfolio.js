@@ -1,31 +1,14 @@
 const CONTENT = {
-  tag:        "Portfolio",
-  heading:    "Chwile, które zostają na zawsze",
-  sub:        "Każda sesja to osobna historia. Oto wszystkie moje prace.",
-  paragraphs: [
-    "Sesje portretowe, rodzinne, ciążowe, a może artystyczne?"
+  tag:     "Portfolio",
+  heading: "Chwile, które zostają na zawsze",
+  sub:     "Każda sesja to osobna historia. Wybierz kategorię i odkryj moje prace.",
+  categories: [
+    { title: "Biznesowe",   cover: "portfolio/biznesowe/biznesowe-cover.jpg",   href: "portfolio-biznesowe.html" },
+    { title: "Reportażowe", cover: "portfolio/reportazowe/reportazowe-cover.jpg", href: "portfolio-reportazowe.html" },
+    { title: "Artystyczne", cover: "portfolio/artystyczne/artystyczne-cover.jpg", href: "portfolio-artystyczne.html" },
+    { title: "Rodzinne",    cover: "portfolio/rodzinne/rodzinne-cover.jpg",    href: "portfolio-rodzinne.html" }
   ],
-  photos: [
-    "portfolio/065A0652-2.jpg",
-    "portfolio/065A0900.jpg",
-    "portfolio/065A1207-2.jpg",
-    "portfolio/065A1313.jpg",
-    "portfolio/065A1508.jpg",
-    "portfolio/065A1592-2.jpg",
-    "portfolio/065A1678-2.jpg",
-    "portfolio/065A1775.jpg",
-    "portfolio/065A1909.jpg",
-    "portfolio/065A1952.jpg",
-    "portfolio/065A2591.jpg",
-    "portfolio/065A3196.jpg",
-    "portfolio/065A3264.jpg",
-    "portfolio/065A3320.jpg",
-    "portfolio/065A3482.jpg",
-    "portfolio/065A4632-2.jpg",
-    "portfolio/065A5517.jpg",
-    "portfolio/065A6129-2.jpg"
-  ],
-  footer: "© 2025 Wanessa Kistela — wszelkie prawa zastrzeżone"
+  footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
@@ -34,53 +17,17 @@ const C = CONTENT;
 document.getElementById('pTag').textContent  = C.tag;
 document.getElementById('pHead').textContent = C.heading;
 document.getElementById('pSub').textContent  = C.sub;
-const pp = document.getElementById('pPara');
-C.paragraphs.forEach(t => pp.innerHTML += `<p class="para">${t}</p>`);
-document.getElementById('foot').textContent  = C.footer;
+document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.footer}</a>`;
 
-/* ── PHOTO GRID ── */
+/* ── CATEGORY TILES ── */
 const grid = document.getElementById('grid');
-C.photos.forEach((src, i) => {
-  const d = ['', 'delay-1', 'delay-2'][i % 3];
-  grid.innerHTML += `
-    <div class="tile reveal ${d}" data-i="${i}">
-      <img src="${src}" alt="Sesja ${i + 1}" loading="lazy">
-      <div class="tile-overlay"></div>
-    </div>`;
-});
-
-/* ── LIGHTBOX ── */
-let lbIndex = 0;
-const lbEl  = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-
-function lbOpen(i) {
-  lbIndex = i;
-  lbImg.src = C.photos[lbIndex];
-  lbEl.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function lbClose() {
-  lbEl.classList.remove('open');
-  document.body.style.overflow = '';
-}
-function lbGo(dir) {
-  lbIndex = (lbIndex + dir + C.photos.length) % C.photos.length;
-  lbImg.src = C.photos[lbIndex];
-}
-
-document.querySelectorAll('.tile').forEach(t =>
-  t.addEventListener('click', () => lbOpen(+t.dataset.i))
-);
-document.getElementById('lb-close').onclick = lbClose;
-document.getElementById('lb-prev').onclick  = () => lbGo(-1);
-document.getElementById('lb-next').onclick  = () => lbGo(1);
-lbEl.addEventListener('click', e => { if (e.target === lbEl) lbClose(); });
-document.addEventListener('keydown', e => {
-  if (!lbEl.classList.contains('open')) return;
-  if (e.key === 'ArrowLeft')  lbGo(-1);
-  if (e.key === 'ArrowRight') lbGo(1);
-  if (e.key === 'Escape')     lbClose();
+C.categories.forEach((cat, i) => {
+  const delay = ['', 'delay-1', 'delay-2', 'delay-3'][i];
+  grid.innerHTML += `<a class="cat-tile reveal ${delay}" href="${cat.href}"
+    style="background-image:url('${cat.cover}')">
+    <div class="cat-tile-overlay"></div>
+    <span class="cat-tile-title">${cat.title}</span>
+  </a>`;
 });
 
 /* ── MOBILE NAV ── */

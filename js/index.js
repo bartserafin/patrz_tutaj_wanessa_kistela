@@ -1,7 +1,6 @@
 const CONTENT = {
   hero: {
     slides: [
-      { img: "logo/Patrz (1).jpg", alt: "Patrz tutaj logo" },
       { img: "carousel/065A1592-2.jpg", alt: "Sesja produktu" },
       { img: "carousel/065A3264.jpg", alt: "Sesja kawa" },
       { img: "carousel/065A3320.jpg", alt: "Sesja studyjna" },

@@ -20,11 +20,11 @@ const CONTENT = {
       "Najbardziej cenię sobie luźną, <b>swobodną atmosferę</b>. Moje sesje przypominają bardziej spotkanie z koleżanką niż sztywny plan zdjęciowy. Dbam o to, aby od pierwszych minut zeszło z Ciebie całe napięcie. Bez wymuszonych uśmiechów, bez sztucznych póz i bez presji czasu.",
     ],
     // name: "Wanessa Kistela"
+    // Pierwsze (alfabetycznie) zdjęcie z contents/about-photo/.
+    // Po podmianie/zmianie nazwy pliku uruchom `node scripts/generate-photo-manifests.js`.
+    photo:    "contents/about-photo/manifest.json",
     photoAlt: "Wanessa Kistela — fotograf"
   },
-  // Zdjęcie w sekcjach „O mnie” i „Kontakt” — pierwsze (alfabetycznie) zdjęcie z contents/photo_of_me/.
-  // Po podmianie/zmianie nazwy pliku uruchom `node scripts/generate-photo-manifests.js`.
-  photoOfMe: "contents/photo_of_me/manifest.json",
   portfolio: {
     tag:      "Portfolio",
     heading:  "Chwile, które zostają na zawsze",
@@ -60,6 +60,8 @@ const CONTENT = {
     tag:      "Kontakt",
     heading:  "Każda sesja zaczyna się od rozmowy i kawy.",
     sub:      "Napisz do mnie i razem stworzymy coś pięknego.",
+    // Pierwsze (alfabetycznie) zdjęcie z contents/contact-photo/.
+    photo:    "contents/contact-photo/manifest.json",
     photoAlt: "Wanessa Kistela",
     location: { label: "Gdzie mnie znajdziesz?", value: "Szczecin" },
     phone:    { label: "Numer kontaktowy",        value: "880 150 066" },
@@ -116,12 +118,11 @@ document.getElementById('aSig').textContent=C.about.name;
 const pa=document.getElementById('aPara');
 C.about.paragraphs.forEach(t=>pa.innerHTML+=`<p>${t}</p>`);
 
-/* ── PHOTO OF ME (about + contact) ── */
+/* ── ABOUT + CONTACT PHOTOS ── */
 document.getElementById('aImg').alt=C.about.photoAlt;
 document.getElementById('cImg').alt=C.contact.photoAlt;
-loadPhotos(C.photoOfMe).then(p=>{
-  if(p.length) document.querySelectorAll('.photo-of-me').forEach(img=>img.src=p[0]);
-});
+loadPhotos(C.about.photo).then(p=>{ if(p.length) document.getElementById('aImg').src=p[0]; });
+loadPhotos(C.contact.photo).then(p=>{ if(p.length) document.getElementById('cImg').src=p[0]; });
 
 /* ── PORTFOLIO ── */
 document.getElementById('pTag').textContent=C.portfolio.tag;

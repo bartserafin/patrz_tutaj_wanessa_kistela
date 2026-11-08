@@ -14,7 +14,8 @@ const FOLDERS = [
   'contents/carousel',           // karuzela na stronie głównej
   'contents/landing-portfolio',  // podgląd portfolio na stronie głównej
   'contents/opinions',           // zdjęcia opinii — n-te zdjęcie = n-ta opinia w js/index.js
-  'contents/photo_of_me',        // „O mnie” i kontakt — pierwszy plik
+  'contents/about-photo',        // zdjęcie w sekcji „O mnie” — pierwszy plik
+  'contents/contact-photo',      // zdjęcie w sekcji „Kontakt” — pierwszy plik
   'contents/portfolio/biznesowe',
   'contents/portfolio/reportazowe',
   'contents/portfolio/artystyczne',

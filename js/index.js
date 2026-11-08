@@ -1,11 +1,12 @@
 const CONTENT = {
   hero: {
-    slides: [
-      { img: "carousel/065A1592-2.jpg", alt: "Sesja produktu" },
-      { img: "carousel/065A3264.jpg", alt: "Sesja kawa" },
-      { img: "carousel/065A3320.jpg", alt: "Sesja studyjna" },
-      { img: "carousel/065A1909.jpg", alt: "Sesja domowa", objectPosition: "center 25%" }
-    ],
+    // Slajdy = wszystkie zdjęcia z contents/carousel/ (kolejność wg nazwy pliku — prefiks 01-, 02-, …).
+    slides:   "contents/carousel/manifest.json",
+    slideAlt: "Sesja zdjęciowa",
+    // Opcjonalne kadrowanie pojedynczych slajdów, po nazwie pliku (po zmianie nazwy popraw też tutaj).
+    slideOptions: {
+      "04-065A1909.jpg": { objectPosition: "center 25%" }
+    },
     heading:    "Fotograf Szczecin",
     subheading: "Szukasz doświadczonego fotografa na terenie Szczecina i okolic?<br><b>Świetnie trafiłaś!</b>",
     ctaLabel:   "Zapytaj o sesję"
@@ -19,50 +20,36 @@ const CONTENT = {
       "Najbardziej cenię sobie luźną, <b>swobodną atmosferę</b>. Moje sesje przypominają bardziej spotkanie z koleżanką niż sztywny plan zdjęciowy. Dbam o to, aby od pierwszych minut zeszło z Ciebie całe napięcie. Bez wymuszonych uśmiechów, bez sztucznych póz i bez presji czasu.",
     ],
     // name: "Wanessa Kistela"
+    photoAlt: "Wanessa Kistela — fotograf"
   },
+  // Zdjęcie w sekcjach „O mnie” i „Kontakt” — pierwsze (alfabetycznie) zdjęcie z contents/photo_of_me/.
+  // Po podmianie/zmianie nazwy pliku uruchom `node scripts/generate-photo-manifests.js`.
+  photoOfMe: "contents/photo_of_me/manifest.json",
   portfolio: {
     tag:      "Portfolio",
     heading:  "Chwile, które zostają na zawsze",
     sub:      "Każda sesja to osobna historia. Oto kilka z nich.",
-    photos: [
-    //   { img: "portfolio/065A0652-2.jpg", alt: "Sesja 1" },
-    //   { img: "portfolio/065A0900.jpg", alt: "Sesja 2" },
-      { img: "portfolio/065A1207-2.jpg", alt: "Sesja 3" },
-    //   { img: "portfolio/065A1313.jpg", alt: "Sesja 4" },
-      { img: "portfolio/065A1508.jpg", alt: "Sesja 5" },
-    //   { img: "portfolio/065A1592-2.jpg", alt: "Sesja 6" },
-    //   { img: "portfolio/065A1678-2.jpg", alt: "Sesja 7" },
-      { img: "portfolio/065A1775.jpg", alt: "Sesja 8" },
-    //   { img: "portfolio/065A1909.jpg", alt: "Sesja 9" },
-      { img: "portfolio/065A1952.jpg", alt: "Sesja 10" },
-    //   { img: "portfolio/065A2591.jpg", alt: "Sesja 11" },
-      { img: "portfolio/065A3196.jpg", alt: "Sesja 12" },
-    //   { img: "portfolio/065A3264.jpg", alt: "Sesja 13" },
-    //   { img: "portfolio/065A3320.jpg", alt: "Sesja 14" },
-      { img: "portfolio/065A3482.jpg", alt: "Sesja 15" },
-      { img: "portfolio/065A4632-2.jpg", alt: "Sesja 16" },
-      { img: "portfolio/065A5517.jpg", alt: "Sesja 17" },
-      { img: "portfolio/065A6129-2.jpg", alt: "Sesja 18" }
-    ]
+    // Wszystkie zdjęcia z contents/landing-portfolio/ (bez podfolderów — schowaj zbędne do _ukryte/).
+    photos:   "contents/landing-portfolio/manifest.json",
+    photoAlt: "Sesja"
   },
   opinions: {
     tag:     "Opinie",
     heading: "Opinie zadowolonych klientów",
+    // Zdjęcia z contents/opinions/ przypisywane po kolei (wg nazwy pliku): 1. zdjęcie → 1. opinia itd.
+    photos:  "contents/opinions/manifest.json",
     items: [
       {
-        img:     "opinions/065A3196.jpg",
         name:    "Paulina",
         session: "Sesja wizerunkowa",
         quote:   "Bardzo długo szukałam fotografa takiego jak Wanessa. Nie boi się próbować nowych rzeczy, jest bardzo otwarta i cudownie ciepła osobowością. Wyniki przeszły moje oczekiwania. To była przyjemność, naprawdę podbiła moje serce wspaniałą pracą."
       },
       {
-        img:     "opinions/065A3482.jpg",
         name:    "Katarzyna",
         session: "Sesja biznesowa",
         quote:   "Profesjonalizm na każdym kroku. Wanessa potrafiła mnie rozluźnić i sprawić, że czułam się swobodnie przed obiektywem. Zdjęcia do portfolio wyglądają fantastycznie — dostałam mnóstwo komplementów od klientów i współpracowników."
       },
       {
-        img:     "opinions/065A4632-2.jpg",
         name:    "Marta & Tomasz",
         session: "Sesja rodzinna",
         quote:   "Każde zdjęcie opowiada historię — pełne emocji, naturalności i piękna. Wanessa doskonale wyczuwa chwilę i potrafi uchwycić to, co najważniejsze. To wspomnienia, do których będziemy wracać przez całe życie."
@@ -73,6 +60,7 @@ const CONTENT = {
     tag:      "Kontakt",
     heading:  "Każda sesja zaczyna się od rozmowy i kawy.",
     sub:      "Napisz do mnie i razem stworzymy coś pięknego.",
+    photoAlt: "Wanessa Kistela",
     location: { label: "Gdzie mnie znajdziesz?", value: "Szczecin" },
     phone:    { label: "Numer kontaktowy",        value: "880 150 066" },
     email:    { label: "Adres email",             value: "wanessa.kistela1@gmail.com" },
@@ -81,34 +69,45 @@ const CONTENT = {
     tiktok:   { label: "TikTok",                  handle: "@wanessa.kistela", href: "https://www.tiktok.com/@wanessa.kistela?_r=1&_t=ZN-99RhrrdCKEo" },
     youtube:  { label: "YouTube",                 handle: "@wanessa7714",     href: "https://youtube.com/@wanessa7714?si=_mjtmiZ2K6JQTGPv" }
   },
+  logo:   "contents/logo/manifest.json",
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
 
+// Lista zdjęć z manifest.json folderu (generuje go scripts/generate-photo-manifests.js).
+const loadPhotos=url=>fetch(url).then(r=>r.json()).then(d=>d.photos).catch(()=>[]);
+
+/* ── LOGO ── */
+loadPhotos(C.logo).then(p=>{ if(p.length) document.querySelector('nav .logo img').src=p[0]; });
+
 /* ── HERO CAROUSEL ── */
 const track = document.getElementById('track');
 const dotsEl = document.getElementById('dots');
-C.hero.slides.forEach((s,i) => {
-  track.innerHTML += `<div class="carousel-slide"><img src="${s.img}" alt="${s.alt}" style="object-position:${s.objectPosition||'center center'}"><div class="slide-overlay"></div></div>`;
-  dotsEl.innerHTML += `<div class="dot${i===0?' active':''}" data-i="${i}"></div>`;
-});
 document.getElementById('hHero').innerHTML = C.hero.heading;
 document.getElementById('hSub').innerHTML  = C.hero.subheading;
 document.getElementById('hCta').textContent  = C.hero.ctaLabel;
 
-let cur=0;
-const n=C.hero.slides.length;
-const allDots=document.querySelectorAll('.dot');
+let cur=0, n=0, allDots=[];
 function goTo(x){
+  if(!n) return;
   cur=(x+n)%n;
   track.style.transform=`translateX(-${cur*100}%)`;
   allDots.forEach((d,i)=>d.classList.toggle('active',i===cur));
 }
 document.getElementById('prev').onclick=()=>goTo(cur-1);
 document.getElementById('next').onclick=()=>goTo(cur+1);
-allDots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
 setInterval(()=>goTo(cur+1),3000);
+loadPhotos(C.hero.slides).then(photos=>{
+  photos.forEach((src,i)=>{
+    const opt=C.hero.slideOptions[src.split('/').pop()]||{};
+    track.innerHTML += `<div class="carousel-slide"><img src="${src}" alt="${C.hero.slideAlt} ${i+1}" style="object-position:${opt.objectPosition||'center center'}"><div class="slide-overlay"></div></div>`;
+    dotsEl.innerHTML += `<div class="dot${i===0?' active':''}" data-i="${i}"></div>`;
+  });
+  n=photos.length;
+  allDots=document.querySelectorAll('.dot');
+  allDots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+});
 
 /* ── ABOUT ── */
 document.getElementById('aTag').textContent=C.about.tag;
@@ -117,14 +116,24 @@ document.getElementById('aSig').textContent=C.about.name;
 const pa=document.getElementById('aPara');
 C.about.paragraphs.forEach(t=>pa.innerHTML+=`<p>${t}</p>`);
 
+/* ── PHOTO OF ME (about + contact) ── */
+document.getElementById('aImg').alt=C.about.photoAlt;
+document.getElementById('cImg').alt=C.contact.photoAlt;
+loadPhotos(C.photoOfMe).then(p=>{
+  if(p.length) document.querySelectorAll('.photo-of-me').forEach(img=>img.src=p[0]);
+});
+
 /* ── PORTFOLIO ── */
 document.getElementById('pTag').textContent=C.portfolio.tag;
 document.getElementById('pHead').textContent=C.portfolio.heading;
 document.getElementById('pSub').textContent=C.portfolio.sub;
 const pg=document.getElementById('pGrid');
-C.portfolio.photos.forEach((p,i)=>{
-  const d=['','delay-1','delay-2'][i%3];
-  pg.innerHTML+=`<div class="p-item reveal ${d}"><img src="${p.img}" alt="${p.alt}"><div class="p-overlay"></div></div>`;
+loadPhotos(C.portfolio.photos).then(photos=>{
+  photos.forEach((src,i)=>{
+    const d=['','delay-1','delay-2'][i%3];
+    pg.innerHTML+=`<div class="p-item reveal ${d}"><img src="${src}" alt="${C.portfolio.photoAlt} ${i+1}"><div class="p-overlay"></div></div>`;
+  });
+  pg.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 });
 
 /* ── OPINIONS ── */
@@ -134,7 +143,7 @@ const opTrack=document.getElementById('opTrack');
 const opDotsEl=document.getElementById('opDots');
 C.opinions.items.forEach((o,i)=>{
   opTrack.innerHTML+=`<div class="opinion-slide">
-    <div class="opinion-photo"><img src="${o.img}" alt="${o.name}"></div>
+    <div class="opinion-photo"><img alt="${o.name}"></div>
     <div class="opinion-body">
       <p class="opinion-name">${o.name}</p>
       <p class="opinion-session">${o.session}</p>
@@ -142,6 +151,9 @@ C.opinions.items.forEach((o,i)=>{
     </div>
   </div>`;
   opDotsEl.innerHTML+=`<button class="op-dot${i===0?' active':''}" data-i="${i}"></button>`;
+});
+loadPhotos(C.opinions.photos).then(photos=>{
+  opTrack.querySelectorAll('.opinion-photo img').forEach((img,i)=>{ if(photos[i]) img.src=photos[i]; });
 });
 let opCur=0;
 const opN=C.opinions.items.length;

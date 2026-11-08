@@ -8,21 +8,24 @@ const CONTENT = {
     { label: "TikTok",   handle: "@wanessa.kistela", href: "https://www.tiktok.com/@wanessa.kistela?_r=1&_t=ZN-99RhrrdCKEo" },
     { label: "Facebook", handle: "Wanessa Kistela",  href: "https://www.facebook.com/share/1F47gd4sz9/?mibextid=wwXIfr" }
   ],
-  // Filmy do osadzenia — wklej link do konkretnego filmu (nie do profilu), platforma
-  // rozpoznawana jest automatycznie. Obsługiwane formaty:
+  // Lista filmów jest w pliku contents/portfolio/video/videos.json — edytuj tam, nie tutaj.
+  // Wklej link do konkretnego filmu (nie do profilu), platforma rozpoznawana jest automatycznie:
   //   YouTube:  https://www.youtube.com/watch?v=ID · https://youtu.be/ID · https://www.youtube.com/shorts/ID
   //   TikTok:   https://www.tiktok.com/@wanessa.kistela/video/ID
   //   Facebook: https://www.facebook.com/.../videos/ID · https://www.facebook.com/reel/ID
-  // Przykład: { url: "https://www.youtube.com/shorts/abc123", title: "Sesja rodzinna — kulisy" },
-  videos: [
-    { url: "https://www.tiktok.com/@wanessa.kistela/video/7701077686969470241?_r=1&_t=ZN-99RhrrdCKEo", title: "Patrz goryl" },
-    { url: "https://www.facebook.com/reel/4246832878903160", title: "Dla Mamy" },
-  ],
+  videos: "contents/portfolio/video/videos.json",
   empty:  "Filmy pojawią się tu już wkrótce. Tymczasem zajrzyj na moje profile!",
+  logo:   "contents/logo/manifest.json",
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
+
+/* ── LOGO ── */
+fetch(C.logo)
+  .then(r => r.json())
+  .then(data => { if (data.photos.length) document.querySelector('nav .logo img').src = data.photos[0]; })
+  .catch(() => {});
 
 /* ── HEADER ── */
 document.getElementById('pBack').textContent = C.back;
@@ -59,22 +62,33 @@ function toEmbed(url) {
 }
 
 const grid = document.getElementById('grid');
-const embeds = C.videos.map(v => ({ ...v, embed: toEmbed(v.url) })).filter(v => v.embed);
-if (!embeds.length) {
-  grid.innerHTML = `<p class="video-empty reveal">${C.empty}</p>`;
+function renderVideos(videos) {
+  const embeds = videos.map(v => ({ ...v, embed: toEmbed(v.url || '') })).filter(v => v.embed);
+  if (!embeds.length) {
+    grid.innerHTML = `<p class="video-empty reveal">${C.empty}</p>`;
+  }
+  embeds.forEach((v, i) => {
+    const d = ['', 'delay-1', 'delay-2'][i % 3];
+    grid.innerHTML += `
+      <figure class="video-tile reveal ${d}${v.embed.vertical ? ' vertical' : ''}">
+        <div class="video-frame">
+          <iframe src="${v.embed.src}" title="${v.title || 'Film'}" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        ${v.title ? `<figcaption>${v.title}</figcaption>` : ''}
+      </figure>`;
+  });
+  grid.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 }
-embeds.forEach((v, i) => {
-  const d = ['', 'delay-1', 'delay-2'][i % 3];
-  grid.innerHTML += `
-    <figure class="video-tile reveal ${d}${v.embed.vertical ? ' vertical' : ''}">
-      <div class="video-frame">
-        <iframe src="${v.embed.src}" title="${v.title || 'Film'}" loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-      ${v.title ? `<figcaption>${v.title}</figcaption>` : ''}
-    </figure>`;
-});
+fetch(C.videos)
+  .then(r => r.json())
+  .then(data => renderVideos(data.videos || []))
+  .catch(err => {
+    // Najczęstsza przyczyna: błąd składni w videos.json (np. przecinek po ostatnim filmie).
+    console.error(`Nie udało się wczytać ${C.videos}:`, err);
+    renderVideos([]);
+  });
 
 /* ── MOBILE NAV ── */
 const mobileNav = document.getElementById('mobile-nav');

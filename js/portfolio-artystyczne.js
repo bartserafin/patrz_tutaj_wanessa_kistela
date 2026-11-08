@@ -3,14 +3,21 @@ const CONTENT = {
   heading: "Chwile, które zostają na zawsze",
   sub:     "Fotografia jako forma sztuki — niepowtarzalne kadry.",
   back:    "← Wróć do Portfolio",
-  // Lista zdjęć wczytywana dynamicznie z portfolio/artystyczne/manifest.json (patrz niżej).
-  // Aby dodać/usunąć zdjęcie: wrzuć/usuń plik w portfolio/artystyczne/ i uruchom
+  // Lista zdjęć wczytywana dynamicznie z contents/portfolio/artystyczne/manifest.json (patrz niżej).
+  // Aby dodać/usunąć zdjęcie: wrzuć/usuń plik w contents/portfolio/artystyczne/ i uruchom
   // `node scripts/generate-photo-manifests.js` — nie edytuj tej tablicy ręcznie.
   photos: [],
+  logo:   "contents/logo/manifest.json",
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
+
+/* ── LOGO ── */
+fetch(C.logo)
+  .then(r => r.json())
+  .then(data => { if (data.photos.length) document.querySelector('nav .logo img').src = data.photos[0]; })
+  .catch(() => {});
 
 /* ── HEADER ── */
 document.getElementById('pBack').textContent = C.back;
@@ -35,7 +42,7 @@ function renderGrid() {
   );
   document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 }
-fetch('portfolio/artystyczne/manifest.json')
+fetch('contents/portfolio/artystyczne/manifest.json')
   .then(r => r.json())
   .then(data => { C.photos = data.photos; renderGrid(); })
   .catch(() => renderGrid());

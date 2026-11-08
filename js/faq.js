@@ -21,10 +21,17 @@ const CONTENT = {
     { q: "Jak mogę zarezerwować termin?",
       a: "Wystarczy, że napiszesz do mnie wiadomość przez formularz kontaktowy, e-mail lub na Instagramie. Omówimy Twój pomysł, ustalimy dogodny termin i dogramy wszystkie szczegóły!" }
   ],
+  logo:   "contents/logo/manifest.json",
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
+
+/* ── LOGO ── */
+fetch(C.logo)
+  .then(r => r.json())
+  .then(data => { if (data.photos.length) document.querySelector('nav .logo img').src = data.photos[0]; })
+  .catch(() => {});
 
 /* ── HEADER ── */
 document.getElementById('pBack').textContent = C.back;

@@ -30,10 +30,17 @@ const CONTENT = {
         "Zgoda na publikację Twojego wizerunku w moim portfolio (Instagram, strona www) jest dobrowolna. Zawsze najpierw pytam o zgodę!"
       ] }
   ],
+  logo:   "contents/logo/manifest.json",
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
 
 const C = CONTENT;
+
+/* ── LOGO ── */
+fetch(C.logo)
+  .then(r => r.json())
+  .then(data => { if (data.photos.length) document.querySelector('nav .logo img').src = data.photos[0]; })
+  .catch(() => {});
 
 /* ── HEADER ── */
 document.getElementById('pBack').textContent = C.back;

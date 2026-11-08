@@ -22,6 +22,10 @@ python -m http.server
 
 A local server is **required**, not optional: every image (logo included) is loaded by `fetch()`-ing a `manifest.json`, which browsers block over `file://`.
 
+## Deployment
+
+Hosted on **GitHub Pages** (custom domain bought at OVHcloud). `.github/workflows/deploy.yml` runs on every push to `master` (or manually): it runs `node scripts/generate-photo-manifests.js`, copies only the site files (`*.html`, `css/`, `js/`, `contents/`) into `_site/`, and deploys that via `actions/deploy-pages`. So in production the manifests are always regenerated from the actual files — adding/removing photos only needs a push. The committed `manifest.json` files are only for local preview; rerun the script locally before previewing. If a new top-level folder or file type is needed on the live site, add it to the `cp` line in the workflow. The custom domain is configured in the repo's Settings → Pages (with an Actions deployment a `CNAME` file in the repo is not used).
+
 ## Architecture
 
 Each page follows a strict **content/logic split**:

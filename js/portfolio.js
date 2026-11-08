@@ -6,7 +6,8 @@ const CONTENT = {
     { title: "Biznesowe",   cover: "portfolio/biznesowe/biznesowe-cover.jpg",   href: "portfolio-biznesowe.html" },
     { title: "Reportażowe", cover: "portfolio/reportazowe/reportazowe-cover.jpg", href: "portfolio-reportazowe.html" },
     { title: "Artystyczne", cover: "portfolio/artystyczne/artystyczne-cover.jpg", href: "portfolio-artystyczne.html" },
-    { title: "Rodzinne",    cover: "portfolio/rodzinne/rodzinne-cover.jpg",    href: "portfolio-rodzinne.html" }
+    { title: "Rodzinne",    cover: "portfolio/rodzinne/rodzinne-cover.jpg",    href: "portfolio-rodzinne.html" },
+    { title: "Video",       cover: "portfolio/video/video-cover.jpg",          href: "portfolio-video.html", video: true }
   ],
   footer: "© 2026 Wanessa Kistela — wszelkie prawa zastrzeżone"
 };
@@ -22,10 +23,11 @@ document.getElementById('foot').innerHTML    = `<a href="regulamin.html">${C.foo
 /* ── CATEGORY TILES ── */
 const grid = document.getElementById('grid');
 C.categories.forEach((cat, i) => {
-  const delay = ['', 'delay-1', 'delay-2', 'delay-3'][i];
-  grid.innerHTML += `<a class="cat-tile reveal ${delay}" href="${cat.href}"
-    style="background-image:url('${cat.cover}')">
+  const delay = ['', 'delay-1', 'delay-2', 'delay-3'][i % 4];
+  grid.innerHTML += `<a class="cat-tile reveal ${delay}${cat.video ? ' cat-tile-video' : ''}" href="${cat.href}"
+    style="background-image:url('${cat.cover}'), linear-gradient(135deg, var(--purple-dark), var(--purple))">
     <div class="cat-tile-overlay"></div>
+    ${cat.video ? '<span class="cat-tile-play" aria-hidden="true"></span>' : ''}
     <span class="cat-tile-title">${cat.title}</span>
   </a>`;
 });

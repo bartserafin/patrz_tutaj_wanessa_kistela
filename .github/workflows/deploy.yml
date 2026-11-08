@@ -1,0 +1,51 @@
+# Publikuje stronę na GitHub Pages po każdym pushu na master.
+# Manifesty zdjęć (contents/**/manifest.json) generuje tutaj skrypt —
+# wystarczy wrzucić/usunąć zdjęcia w contents/ i zrobić push.
+name: Deploy na GitHub Pages
+
+on:
+  # Obejmuje też merge PR-a z feature/* do master — merge to push na master.
+  push:
+    branches: [master]
+  # Ręczne uruchomienie z zakładki Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generuj manifesty zdjęć
+        run: node scripts/generate-photo-manifests.js
+
+      # Publikujemy tylko pliki strony — bez scripts/, CLAUDE.md, .claude/ itp.
+      - name: Złóż stronę do _site/
+        run: |
+          mkdir _site
+          cp -r *.html css js contents _site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

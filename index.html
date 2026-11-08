@@ -6,15 +6,19 @@
   <title>Wanessa Kistela Fotografia</title>
   <!--
   ╔══════════════════════════════════════════════════════╗
-  ║  STRUKTURA FOLDERÓW W REPOZYTORIUM                  ║
+  ║  STRUKTURA FOLDERÓW — wszystkie zdjęcia w /contents/ ║
   ║                                                      ║
-  ║  /logo/          →  logo.png (lub .svg)              ║
-  ║  /carousel/      →  01.jpg, 02.jpg, 03.jpg, ...      ║
-  ║  /photo_of_me/   →  me.jpg                           ║
-  ║  /portfolio/     →  01.jpg, 02.jpg, 03.jpg, ...      ║
+  ║  logo/              →  logo w nawigacji              ║
+  ║  carousel/          →  karuzela na górze strony      ║
+  ║  landing-portfolio/ →  podgląd portfolio (ta strona) ║
+  ║  opinions/          →  zdjęcia w opiniach klientów   ║
+  ║  photo_of_me/       →  zdjęcie „O mnie” i kontakt    ║
+  ║  portfolio/<kat>/   →  galerie podstron portfolio    ║
+  ║                        (artystyczne, biznesowe,      ║
+  ║                        reportazowe, rodzinne, video) ║
   ║                                                      ║
   ║  Wszystkie teksty edytujesz w obiekcie CONTENT       ║
-  ║  poniżej — bez dotykania reszty kodu.                ║
+  ║  w js/index.js — bez dotykania reszty kodu.          ║
   ╚══════════════════════════════════════════════════════╝
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +33,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#hero"><img src="logo/Patrz (3) nav.png" alt="Wanessa Kistela"></a>
+  <a class="logo" href="#hero"><img alt="Wanessa Kistela"></a>
   <ul id="nav-links">
     <li><a href="#o-mnie">O mnie</a></li>
     <li><a href="portfolio.html">Portfolio</a></li>
@@ -74,7 +78,7 @@
 <!-- ABOUT -->
 <section class="about" id="o-mnie">
   <div class="about-img reveal">
-    <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela — fotograf">
+    <img id="aImg" class="photo-of-me" alt="">
   </div>
   <div class="about-text reveal delay-1">
     <p class="section-tag" id="aTag"></p>
@@ -121,7 +125,7 @@
     <div class="contact-items" id="cDet"></div>
   </div>
   <div class="contact-photo reveal delay-1">
-    <img src="photo_of_me/065A3669.jpg" alt="Wanessa Kistela">
+    <img id="cImg" class="photo-of-me" alt="">
   </div>
 </section>
 

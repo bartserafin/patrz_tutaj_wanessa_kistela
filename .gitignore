@@ -1,0 +1,2 @@
+# Lokalne ustawienia Claude Code (uprawnienia, preferencje) — nie trafiają do repo
+.claude/settings.local.json

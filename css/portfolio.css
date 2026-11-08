@@ -119,6 +119,7 @@
       border-radius:12px;
       overflow:hidden;
       aspect-ratio:4 / 3;
+      background-color:var(--purple-dark);
       background-size:cover;
       background-position:center;
       cursor:pointer;
@@ -156,6 +157,29 @@
     }
     .cat-tile:hover .cat-tile-title { transform:translateY(-6px); }
 
+    /* Kafelek Video — na całą szerokość pod siatką 2×2, z ikoną „play” */
+    .cat-tile-video {
+      grid-column:1 / -1;
+      aspect-ratio:8 / 3;
+    }
+    .cat-tile-play {
+      position:absolute; top:50%; left:50%; z-index:1;
+      width:72px; height:72px; margin:-36px 0 0 -36px;
+      border-radius:50%;
+      background:rgba(255,255,255,.18);
+      border:2px solid rgba(255,255,255,.7);
+      transition:transform .3s ease, background .3s;
+    }
+    .cat-tile-play::after {
+      content:'';
+      position:absolute; top:50%; left:54%;
+      transform:translate(-50%, -50%);
+      border-style:solid;
+      border-width:12px 0 12px 20px;
+      border-color:transparent transparent transparent #fff;
+    }
+    .cat-tile-video:hover .cat-tile-play { transform:scale(1.1); background:var(--orange); }
+
     /* ── FOOTER ── */
     footer {
       background:#1d0e30; text-align:center;
@@ -189,7 +213,7 @@
     }
     @media(max-width:600px){
       #grid { grid-template-columns:1fr; }
-      .cat-tile { aspect-ratio:3 / 2; }
+      .cat-tile, .cat-tile-video { aspect-ratio:3 / 2; }
     }
     @media(max-width:540px){
       .page-header h1 { font-size:2rem; }

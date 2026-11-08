@@ -45,7 +45,7 @@ Each page has its own paired CSS file — there is no shared/global stylesheet. 
 
 ### index.html / js/index.js / css/index.css
 
-Renders, in order: nav + mobile nav overlay, a hero image carousel (auto-advancing every 3s, with prev/next arrows and dots), an "about" section, a portfolio preview grid, a testimonial/"opinions" carousel, a contact section, and a footer. All images come from manifests via a shared `loadPhotos(url)` helper (returns `[]` on fetch failure); grids/slides are built in its `.then`, so newly rendered `.reveal` elements must be passed to `revealObserver.observe` there (the portfolio grid does this). Alt texts are generic + index (`CONTENT.hero.slideAlt`, `CONTENT.portfolio.photoAlt`), and `CONTENT.about.photoAlt` / `CONTENT.contact.photoAlt` for Wanessa's photo. Opinions: text stays in `CONTENT.opinions.items`; photos from `contents/opinions/` are matched **by position** (1st file by name → 1st opinion).
+Renders, in order: nav + mobile nav overlay, a hero image carousel (auto-advancing every 3s, with prev/next arrows and dots), an "about" section, a portfolio preview grid, a testimonial/"opinions" carousel, a contact section, and a footer. All images come from manifests via a shared `loadPhotos(url)` helper (returns `[]` on fetch failure); grids/slides are built in its `.then`, so newly rendered `.reveal` elements must be passed to `revealObserver.observe` there (the portfolio grid does this). Alt texts are generic + index (`CONTENT.hero.slideAlt`, `CONTENT.portfolio.photoAlt`), and `CONTENT.about.photoAlt` / `CONTENT.contact.photoAlt` for Wanessa's two photos (separate folders: `about-photo/`, `contact-photo/`). Opinions: text stays in `CONTENT.opinions.items`; photos from `contents/opinions/` are matched **by position** (1st file by name → 1st opinion).
 
 ### portfolio.html / js/portfolio.js / css/portfolio.css
 
@@ -72,7 +72,7 @@ Each subpage renders: a "← Wróć do Portfolio" back-link, a page header, a ma
 node scripts/generate-photo-manifests.js
 ```
 
-This scans each folder in its `FOLDERS` list — every image folder under `contents/` (logo, carousel, landing-portfolio, opinions, photo_of_me, the four photo categories; not `portfolio/video/`) — and rewrites its `manifest.json` (creating the folder if needed). It picks up every `.jpg/.jpeg/.png/.webp` file, sorted by natural filename order — **including the `[kategoria]-cover.jpg` hub cover**, so the cover photo also appears in that category's gallery (there is no exclusion rule). Never edit `photos: []` in the JS files by hand — it's just a fallback used if the fetch fails. Because the grid loads via `fetch()`, viewing pages via `file://` won't show any photos — serve the directory locally (see "Running / previewing" above) or deploy to a real static host.
+This scans each folder in its `FOLDERS` list — every image folder under `contents/` (logo, carousel, landing-portfolio, opinions, about-photo, contact-photo, the four photo categories; not `portfolio/video/`) — and rewrites its `manifest.json` (creating the folder if needed). It picks up every `.jpg/.jpeg/.png/.webp` file, sorted by natural filename order — **including the `[kategoria]-cover.jpg` hub cover**, so the cover photo also appears in that category's gallery (there is no exclusion rule). Never edit `photos: []` in the JS files by hand — it's just a fallback used if the fetch fails. Because the grid loads via `fetch()`, viewing pages via `file://` won't show any photos — serve the directory locally (see "Running / previewing" above) or deploy to a real static host.
 
 ### portfolio-video.html / js/portfolio-video.js / css/portfolio-video.css
 
@@ -112,8 +112,9 @@ Every folder below except `portfolio/video/` has a generated `manifest.json` (`{
 - `contents/carousel/` — home page hero carousel, every file = one slide
 - `contents/landing-portfolio/` — home page preview grid, every file is shown; photos not shown are parked in `landing-portfolio/_ukryte/`. Not shown on the category subpages.
 - `contents/opinions/` — testimonial photos, matched by position to `CONTENT.opinions.items` — keep the count and order in step with the opinions
-- `contents/photo_of_me/` — Wanessa's photo (about + contact); **first** file is used, keep exactly one
-- `contents/portfolio/biznesowe/`, `…/reportazowe/`, `…/artystyczne/`, `…/rodzinne/` — category galleries (+ their `manifest.json`); the cover photo for each hub tile is also stored here (named `[kategoria]-cover.jpg` by convention). As of now only `biznesowe-cover.jpg` exists and the other three category folders contain no photos, so three hub tiles fall back to the plain gradient and three subpages show an empty grid.
+- `contents/about-photo/` — Wanessa's photo in the "O mnie" section (`CONTENT.about.photo`); **first** file is used, keep exactly one
+- `contents/contact-photo/` — her photo in the "Kontakt" section (`CONTENT.contact.photo`); **first** file is used, keep exactly one
+- `contents/portfolio/biznesowe/`, `…/reportazowe/`, `…/artystyczne/`, `…/rodzinne/` — category galleries (+ their `manifest.json`); the cover photo for each hub tile is also stored here (named `[kategoria]-cover.jpg` by convention). All four categories now have photos and a cover.
 - `contents/portfolio/video/` — `videos.json` (the hand-edited list of embedded social-media videos, see the video subpage section) and the Video hub tile's cover (`video-cover.jpg`, doesn't exist yet — drop a file there to replace the gradient).
 
 The ASCII "STRUKTURA FOLDERÓW" comment at the top of `index.html` mirrors this layout — keep it in sync if folders change.
